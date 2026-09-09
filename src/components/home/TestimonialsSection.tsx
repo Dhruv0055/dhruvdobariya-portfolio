@@ -16,7 +16,7 @@ export const TestimonialsSection: React.FC = () => {
           <ScrollReveal direction="down">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-neutral-900 border border-white/10 rounded-full text-xs font-mono text-neutral-300 mb-3">
               <MessageSquare className="w-3.5 h-3.5 text-white" />
-              <span>08 / CLIENT VOICES & RESULTS</span>
+              <span>06 / CLIENT VOICES & RESULTS</span>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>

@@ -35,7 +35,7 @@ export const ServicesSection: React.FC = () => {
           <ScrollReveal direction="down">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/5 border border-white/15 rounded-full text-xs font-mono text-neutral-300">
               <Sparkles className="w-3.5 h-3.5 text-white" />
-              <span>04 / CORE EDITING SERVICES</span>
+              <span>03 / CORE EDITING SERVICES</span>
             </div>
           </ScrollReveal>
 

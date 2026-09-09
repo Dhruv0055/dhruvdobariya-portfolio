@@ -11,7 +11,7 @@ export const ProcessSection: React.FC = () => {
         <div>
           <ScrollReveal direction="down">
             <span className="font-mono text-xs text-neutral-400 tracking-widest uppercase block mb-2 font-semibold">
-              05 / POST-PRODUCTION WORKFLOW
+              04 / POST-PRODUCTION WORKFLOW
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>

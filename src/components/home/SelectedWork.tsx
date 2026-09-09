@@ -15,7 +15,7 @@ export const SelectedWork: React.FC = () => {
         <div>
           <ScrollReveal direction="down">
             <span className="font-mono text-xs text-neutral-400 tracking-widest uppercase block mb-2 font-semibold">
-              02 / SELECTED WORK (VERTICAL PREVIEWS)
+              01 / SELECTED WORK (VERTICAL PREVIEWS)
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>

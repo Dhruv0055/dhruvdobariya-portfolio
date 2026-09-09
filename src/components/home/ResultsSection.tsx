@@ -15,7 +15,7 @@ export const ResultsSection: React.FC = () => {
         <div>
           <ScrollReveal direction="down">
             <span className="font-mono text-xs text-neutral-400 tracking-widest uppercase block mb-2 font-semibold">
-              07 / RESULTS & RETENTION
+              05 / RESULTS & RETENTION
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>

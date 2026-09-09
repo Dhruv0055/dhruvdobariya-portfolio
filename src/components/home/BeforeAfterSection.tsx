@@ -36,7 +36,7 @@ export const BeforeAfterSection: React.FC = () => {
         <div>
           <ScrollReveal direction="down">
             <span className="font-mono text-xs text-neutral-400 tracking-widest uppercase block mb-2 font-semibold">
-              03 / POST-PRODUCTION FINISH
+              02 / POST-PRODUCTION FINISH
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>

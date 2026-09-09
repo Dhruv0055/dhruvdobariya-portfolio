@@ -1,7 +1,7 @@
 import React from 'react';
 import { Hero } from '../components/home/Hero';
 import { AboutIntroduction } from '../components/home/AboutIntroduction';
-import { ShowreelSection } from '../components/home/ShowreelSection';
+import { SelectedWork } from '../components/home/SelectedWork';
 import { BeforeAfterSection } from '../components/home/BeforeAfterSection';
 import { ServicesSection } from '../components/home/ServicesSection';
 import { ProcessSection } from '../components/home/ProcessSection';
@@ -14,7 +14,7 @@ export const HomePage: React.FC = () => {
     <div className="relative">
       <Hero />
       <AboutIntroduction />
-      <ShowreelSection />
+      <SelectedWork />
       <BeforeAfterSection />
       <ServicesSection />
       <ProcessSection />
