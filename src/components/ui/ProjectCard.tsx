@@ -36,20 +36,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none" />
 
         {/* Top Badges */}
-        <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
-          <div className="flex items-center gap-1.5">
-            <span className="px-2 py-0.5 bg-black/80 backdrop-blur-md rounded font-mono text-[10px] font-bold text-white border border-white/15">
-              {project.number}
-            </span>
-            <span className="px-2 py-0.5 bg-black/80 backdrop-blur-md rounded font-mono text-[10px] tracking-wider uppercase text-neutral-200 border border-white/15">
-              {project.category}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-1 px-2 py-0.5 bg-black/80 backdrop-blur-md rounded font-mono text-[10px] font-bold text-white border border-white/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span>4K MASTER</span>
-          </div>
+        <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 pointer-events-none">
+          <span className="px-2 py-0.5 bg-black/80 backdrop-blur-md rounded font-mono text-[10px] font-bold text-white border border-white/15">
+            {project.number}
+          </span>
+          <span className="px-2 py-0.5 bg-black/80 backdrop-blur-md rounded font-mono text-[10px] tracking-wider uppercase text-neutral-200 border border-white/15">
+            {project.category}
+          </span>
         </div>
 
         {/* Center Minimal Play Action */}
@@ -57,8 +50,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <div className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl group-hover/media:scale-110 transition-all duration-300">
             <HardDrive className="w-6 h-6 text-black fill-current" />
           </div>
-          <span className="mt-3 px-3 py-1 bg-black/90 backdrop-blur-md rounded-full font-mono text-[11px] font-bold uppercase tracking-wider text-white border border-white/20 shadow-lg group-hover/media:bg-white group-hover/media:text-black transition-colors">
-            STREAM 4K ON DRIVE
+          <span className="mt-3 px-3.5 py-1 bg-black/90 backdrop-blur-md rounded-full font-mono text-[11px] font-bold uppercase tracking-wider text-white border border-white/20 shadow-lg group-hover/media:bg-white group-hover/media:text-black transition-colors">
+            WATCH ON DRIVE
           </span>
         </div>
 
@@ -108,7 +101,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-white hover:text-neutral-300 transition-colors group/link"
             >
-              <span>OPEN 4K DRIVE</span>
+              <span>WATCH ON DRIVE</span>
               <ExternalLink className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
             </a>
           )}

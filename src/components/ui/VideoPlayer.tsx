@@ -24,7 +24,6 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   title = 'Video Player',
   aspectRatio = 'video',
   className = '',
-  showDriveCta = true,
 }) => {
   const parsed = parseVideoSource(videoUrl || googleDriveUrl);
   const targetDriveLink = googleDriveUrl || videoUrl || 'https://drive.google.com/file/d/1DFAgevx05WhHTuQozoFQXDK58xCvvz4W/view?usp=drive_link';
@@ -75,51 +74,27 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         {/* Gradient Scrim */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none" />
 
-        {/* Top Floating Badge */}
-        <div className="absolute top-3 left-3 z-20 flex items-center gap-2 pointer-events-none">
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-black/85 backdrop-blur-md rounded-full font-mono text-[10px] font-bold text-white border border-white/15">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>4K MASTER SHOWREEL</span>
-          </div>
-        </div>
-
-        {/* Center Glowing Play Action */}
+        {/* Center Minimal Play Action */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-4">
-          <div className="w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-emerald-400 group-hover:bg-emerald-300 text-black flex items-center justify-center shadow-[0_0_35px_rgba(52,211,153,0.7)] group-hover:scale-110 transition-all duration-300">
-            <HardDrive className="w-8 sm:w-10 h-8 sm:h-10 text-black fill-current" />
+          <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-300">
+            <HardDrive className="w-7 h-7 text-black fill-current" />
           </div>
-          <span className="mt-4 px-4 py-1.5 bg-black/90 backdrop-blur-md rounded-full font-mono text-xs font-bold uppercase tracking-wider text-emerald-300 border border-emerald-400/60 shadow-xl group-hover:text-white transition-colors">
-            WATCH FULL 4K ON DRIVE
+          <span className="mt-3 px-3.5 py-1 bg-black/90 backdrop-blur-md rounded-full font-mono text-[11px] font-bold uppercase tracking-wider text-white border border-white/20 shadow-xl group-hover:bg-white group-hover:text-black transition-colors">
+            WATCH ON DRIVE
           </span>
         </div>
 
-        {/* Bottom Audio Wave / Quality Indicator */}
-        <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between text-[11px] font-mono text-[#A1A1AA] pointer-events-none">
-          <span className="px-2.5 py-1 bg-black/80 rounded backdrop-blur-sm border border-white/10">
-            CLICK TO STREAM MASTER
+        {/* Bottom Quick Indicator */}
+        <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between text-[11px] font-mono text-neutral-400 pointer-events-none">
+          <span className="px-2.5 py-1 bg-black/80 rounded backdrop-blur-sm border border-white/10 text-neutral-300">
+            CLICK TO STREAM
           </span>
-          <span className="text-emerald-400 font-semibold inline-flex items-center gap-1">
-            <span>UNCOMPRESSED 4K</span>
+          <span className="text-white font-semibold inline-flex items-center gap-1">
+            <span>DRIVE</span>
             <ExternalLink className="w-3 h-3" />
           </span>
         </div>
       </a>
-
-      {/* Top Floating Drive Direct Link */}
-      {showDriveCta && (
-        <div className="absolute top-3 right-3 z-20 pointer-events-auto">
-          <a
-            href={targetDriveLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-black/90 hover:bg-emerald-400 text-white hover:text-black text-xs font-mono font-bold rounded-lg border border-emerald-400/60 hover:border-emerald-300 transition-all backdrop-blur-md shadow-[0_0_15px_rgba(52,211,153,0.3)] hover:scale-105"
-          >
-            <HardDrive className="w-3.5 h-3.5 text-emerald-400 group-hover:text-black" />
-            <span>OPEN 4K DRIVE</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
-        </div>
-      )}
     </div>
   );
 };

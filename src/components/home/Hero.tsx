@@ -78,11 +78,11 @@ export const Hero: React.FC = () => {
           <ScrollReveal delay={0.5}>
             <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-6 max-w-lg">
               <div>
-                <span className="block font-display text-2xl font-bold text-[#F4F4F5]">
-                  4K MASTER
+                <span className="block font-display text-2xl font-bold text-white">
+                  STUDIO
                 </span>
-                <span className="text-[10px] font-mono text-[#71717A] tracking-wider uppercase">
-                  Uncompressed Quality
+                <span className="text-[10px] font-mono text-neutral-500 tracking-wider uppercase">
+                  Master Quality
                 </span>
               </div>
               <div>
