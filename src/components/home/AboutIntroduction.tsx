@@ -74,16 +74,16 @@ export const AboutIntroduction: React.FC = () => {
           </div>
 
           {/* Bio Text */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <ScrollReveal delay={0.15}>
-              <p className="text-base sm:text-lg text-[#E4E4E7] font-sans font-normal leading-relaxed">
-                I'm <strong className="text-white font-semibold">Dhruv Dobariya</strong>, a freelance video editor dedicated to post-production excellence and high-retention visual storytelling.
+              <p className="text-base sm:text-lg text-neutral-200 font-sans font-normal leading-relaxed">
+                I'm <strong className="text-white font-semibold">Dhruv Dobariya</strong> — a freelance video editor helping creators, agencies, and brands turn raw footage into high-retention Reels, commercial films, and viral social content.
               </p>
             </ScrollReveal>
             
             <ScrollReveal delay={0.2}>
-              <p className="text-base sm:text-lg text-[#A1A1AA] font-sans font-light leading-relaxed">
-                I specialize in transforming raw camera files into sharp, engaging, and high-converting video edits. From hook-driven short-form reels and creator YouTube content to polished commercial brand ads, I deliver seamless cuts, DaVinci Resolve color science, and spatial sound design.
+              <p className="text-sm sm:text-base text-neutral-400 font-sans font-light leading-relaxed">
+                I focus on what actually matters: fast 24-48h turnarounds, clean DaVinci color grading, retention-first pacing, and surgical audio design.
               </p>
             </ScrollReveal>
           </div>

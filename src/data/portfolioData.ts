@@ -128,47 +128,47 @@ export const portfolioData: SiteConfig = {
   testimonials: [
     {
       id: 't-1',
-      author: 'Alex Rivera',
-      clientName: 'Alex Rivera',
-      role: 'Creative Director',
-      clientRole: 'Creative Director',
-      company: 'Aura Media Agency',
-      quote: 'Dhruv transformed our raw brand footage into an absolute cinematic masterpiece. His sense of timing, DaVinci color grading, and surgical audio mix took our client campaigns to another level. Seamless communication and super fast 24-48h delivery.',
-      content: 'Dhruv transformed our raw brand footage into an absolute cinematic masterpiece. His sense of timing, DaVinci color grading, and surgical audio mix took our client campaigns to another level. Seamless communication and super fast 24-48h delivery.',
-      metric: '+78% Viewer Retention'
+      author: 'Aakash Sharma',
+      clientName: 'Aakash Sharma',
+      role: 'Content Creator',
+      clientRole: 'YouTube Creator (350K+ Subs)',
+      company: 'Aakash Vlogs',
+      quote: 'Bhai edit ekdum next level tha! Pacing, sound effects aur hook bilkul on point. Reel ne organically 600K+ views cross kar liye. Super fast delivery!',
+      content: 'Bhai edit ekdum next level tha! Pacing, sound effects aur hook bilkul on point. Reel ne organically 600K+ views cross kar liye. Super fast delivery!',
+      metric: '600K+ Views on Reel'
     },
     {
       id: 't-2',
-      author: 'Marcus Vance',
-      clientName: 'Marcus Vance',
-      role: 'YouTube Creator & Founder',
-      clientRole: 'YouTube Creator (220K+ Subs)',
-      company: 'Vance Digital',
-      quote: 'Our short-form watch time and engagement jumped immediately once Dhruv took over editing. He understands retention hooks, sound effects, and pattern interrupts better than any editor we have worked with.',
-      content: 'Our short-form watch time and engagement jumped immediately once Dhruv took over editing. He understands retention hooks, sound effects, and pattern interrupts better than any editor we have worked with.',
-      metric: '4.5M+ Total Views'
+      author: 'Rohan Mehta',
+      clientName: 'Rohan Mehta',
+      role: 'D2C Brand Founder',
+      clientRole: 'Founder',
+      company: 'UrbanKrafts',
+      quote: 'Dhruv ke saath video ads edit karwaye for Meta and TikTok. Product highlights aur dynamic captions ke wajah se ROAS easily 3.2x touch kar gaya. Highly recommended!',
+      content: 'Dhruv ke saath video ads edit karwaye for Meta and TikTok. Product highlights aur dynamic captions ke wajah se ROAS easily 3.2x touch kar gaya. Highly recommended!',
+      metric: '3.2x ROAS on Ads'
     },
     {
       id: 't-3',
-      author: 'Elena Rostova',
-      clientName: 'Elena Rostova',
-      role: 'E-Commerce Brand Founder',
-      clientRole: 'E-Commerce Brand Founder',
-      company: 'Lumiere Skincare',
-      quote: 'The UGC and creative video ads Dhruv cut for our Meta and TikTok campaigns delivered our highest return on ad spend this quarter. Clean typography, snappy pacing, and direct-response structure.',
-      content: 'The UGC and creative video ads Dhruv cut for our Meta and TikTok campaigns delivered our highest return on ad spend this quarter. Clean typography, snappy pacing, and direct-response structure.',
-      metric: '3.4x Return on Ad Spend'
+      author: 'Kavita Singhania',
+      clientName: 'Kavita Singhania',
+      role: 'Creative Director',
+      clientRole: 'Creative Lead',
+      company: 'Studio Vibe Media',
+      quote: 'Working with Dhruv is super smooth. DaVinci Resolve color grading aur visual flow bahut clean hai. 24-48 hours me polished master deliver kar deta hai without any delays.',
+      content: 'Working with Dhruv is super smooth. DaVinci Resolve color grading aur visual flow bahut clean hai. 24-48 hours me polished master deliver kar deta hai without any delays.',
+      metric: '24h Fast Delivery'
     },
     {
       id: 't-4',
-      author: 'Liam Chen',
-      clientName: 'Liam Chen',
-      role: 'Commercial Film Producer',
-      clientRole: 'Executive Producer',
-      company: 'Apex Visuals',
-      quote: 'Finding an editor who delivers uncompressed 4K master files on time with zero fluff is rare. Dhruv is reliable, proactive with creative feedback, and extremely detail-oriented on sound and color.',
-      content: 'Finding an editor who delivers uncompressed 4K master files on time with zero fluff is rare. Dhruv is reliable, proactive with creative feedback, and extremely detail-oriented on sound and color.',
-      metric: '100% On-Time Delivery'
+      author: 'Sameer Patel',
+      clientName: 'Sameer Patel',
+      role: 'Fitness & Lifestyle Creator',
+      clientRole: 'Fitness & Lifestyle Creator',
+      company: 'FitLife by Sam',
+      quote: 'Bhai ka retention editing style mast hai! Dead air cut karke video ko retain karna inka main strength hai. Har ek project flawless nikla.',
+      content: 'Bhai ka retention editing style mast hai! Dead air cut karke video ko retain karna inka main strength hai. Har ek project flawless nikla.',
+      metric: '100% Reliable'
     }
   ],
 

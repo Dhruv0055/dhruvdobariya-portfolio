@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Globe, CheckCircle2 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import { ToolsSection } from '../components/home/ToolsSection';
 import { ServicesSection } from '../components/home/ServicesSection';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 
@@ -133,9 +132,6 @@ export const AboutPage: React.FC = () => {
 
       {/* Services Breakdown */}
       <ServicesSection />
-
-      {/* Tools & Tech */}
-      <ToolsSection />
 
       {/* Bottom CTA */}
       <section className="text-center py-16 space-y-6 border-t border-white/10">
