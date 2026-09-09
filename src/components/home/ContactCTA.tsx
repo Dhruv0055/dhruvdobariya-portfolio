@@ -18,7 +18,7 @@ export const ContactCTA: React.FC = () => {
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold uppercase tracking-tight text-white leading-[0.95]">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold uppercase tracking-tight text-white leading-[1.12]">
               HAVE A PROJECT <br />
               <span className="text-neutral-400">
                 IN MIND?

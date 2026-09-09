@@ -46,7 +46,7 @@ export const AboutPage: React.FC = () => {
               </span>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-black uppercase tracking-tight text-white leading-[0.95]">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-black uppercase tracking-tight text-white leading-[1.12]">
                 TURNING RAW FOOTAGE <br />
                 <span className="text-neutral-400">
                   INTO IMPACT.

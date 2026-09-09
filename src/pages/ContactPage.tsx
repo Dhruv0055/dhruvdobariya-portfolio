@@ -18,7 +18,7 @@ export const ContactPage: React.FC = () => {
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold uppercase tracking-tight text-white leading-[0.95]">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold uppercase tracking-tight text-white leading-[1.12]">
             LET'S CREATE <br />
             <span className="text-neutral-400">
               SOMETHING GREAT.

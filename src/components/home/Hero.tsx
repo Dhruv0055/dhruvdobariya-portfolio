@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
 
           {/* Large Editorial Headline */}
           <ScrollReveal delay={0.2}>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl font-display font-extrabold tracking-tight text-white leading-[1.02] uppercase">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl font-display font-extrabold text-white leading-[1.12] uppercase">
               VIDEO EDITOR <br />
               <span className="text-neutral-400">
                 & VISUAL STORYTELLER

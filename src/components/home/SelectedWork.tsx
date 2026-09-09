@@ -19,7 +19,7 @@ export const SelectedWork: React.FC = () => {
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight text-white">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight text-white leading-[1.12]">
               PROJECTS THAT <br />
               <span className="text-neutral-400">
                 SPEAK FOR THEMSELVES.
