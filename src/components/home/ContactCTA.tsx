@@ -2,7 +2,6 @@ import React from 'react';
 import { Mail, MessageSquare, ArrowUpRight, HardDrive } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { ScrollReveal } from '../ui/ScrollReveal';
-import { InstagramIcon, LinkedinIcon } from '../ui/BrandIcons';
 
 export const ContactCTA: React.FC = () => {
   const gmailDirectUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${portfolioData.contact.email}&su=Video%20Editing%20Project%20Inquiry`;
@@ -100,49 +99,25 @@ export const ContactCTA: React.FC = () => {
           </ScrollReveal>
         </div>
 
-        {/* Secondary Channels & Master Vault */}
+        {/* Master Drive Vault Link */}
         <ScrollReveal delay={0.4}>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-            {/* Google Drive Vault */}
+          <div className="pt-2">
             <a
               href={portfolioData.masterDriveFolder || "https://drive.google.com/drive/folders/1-fAPohvDgHQ8tLt3TJAOscRYUVtHhLlL?usp=drive_link"}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 bg-neutral-900/60 border border-white/10 hover:border-white/30 rounded-xl flex items-center justify-between transition-colors group"
+              className="p-5 bg-neutral-900/60 hover:bg-neutral-900 border border-white/10 hover:border-white/30 rounded-2xl flex items-center justify-between w-full transition-all group"
             >
-              <div className="flex items-center gap-3">
-                <HardDrive className="w-4 h-4 text-white" />
-                <span className="text-xs font-mono text-white font-semibold">Drive Master Folder</span>
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                  <HardDrive className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <span className="text-sm font-display font-bold text-white block">Google Drive Master Archive</span>
+                  <span className="text-xs font-mono text-neutral-400 block">Stream and review uncompressed 4K master deliverables</span>
+                </div>
               </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-
-            {/* Instagram */}
-            <a
-              href={portfolioData.contact.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 bg-neutral-900/60 border border-white/10 hover:border-white/30 rounded-xl flex items-center justify-between transition-colors group"
-            >
-              <div className="flex items-center gap-3">
-                <InstagramIcon className="w-4 h-4 text-neutral-400 group-hover:text-white" />
-                <span className="text-xs font-mono text-white">Instagram</span>
-              </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white" />
-            </a>
-
-            {/* LinkedIn */}
-            <a
-              href={portfolioData.contact.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 bg-neutral-900/60 border border-white/10 hover:border-white/30 rounded-xl flex items-center justify-between transition-colors group"
-            >
-              <div className="flex items-center gap-3">
-                <LinkedinIcon className="w-4 h-4 text-neutral-400 group-hover:text-white" />
-                <span className="text-xs font-mono text-white">LinkedIn</span>
-              </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white" />
+              <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
           </div>
         </ScrollReveal>
