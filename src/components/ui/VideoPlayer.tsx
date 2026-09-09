@@ -74,20 +74,15 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         {/* Gradient Scrim */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none" />
 
-        {/* Center Highlighted Play Action */}
+        {/* Center Play Action */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-4">
-          <div className="relative flex items-center justify-center">
-            {/* Outer glowing halo */}
-            <div className="absolute inset-0 rounded-full bg-white/25 blur-md scale-125 group-hover:scale-150 group-hover:bg-white/40 transition-all duration-300" />
-            
-            {/* White Circular Play Button with Play Icon */}
-            <div className="relative w-16 sm:w-18 h-16 sm:h-18 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.4)] group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.7)] transition-all duration-300">
-              <Play className="w-8 h-8 text-black fill-black ml-1" />
-            </div>
+          {/* White Circular Play Button */}
+          <div className="w-16 h-16 rounded-full bg-white/95 text-black flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:bg-white transition-all duration-300">
+            <Play className="w-7 h-7 text-black fill-black ml-0.5" />
           </div>
 
-          {/* Highlighted Button Badge */}
-          <span className="mt-3.5 px-4 py-1.5 bg-black/90 backdrop-blur-md rounded-full font-mono text-xs font-bold uppercase tracking-wider text-white border border-white/30 shadow-2xl group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
+          {/* Subdued Watch on Drive Pill */}
+          <span className="mt-3.5 px-4 py-1.5 bg-black/80 backdrop-blur-md rounded-full font-mono text-xs font-bold uppercase tracking-wider text-neutral-200 border border-white/15 shadow-md group-hover:border-white/30 group-hover:text-white transition-colors">
             WATCH ON DRIVE
           </span>
         </div>
