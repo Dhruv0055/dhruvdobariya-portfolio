@@ -25,25 +25,25 @@ export const WorkPage: React.FC = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+    <div className="pt-24 pb-16 sm:pt-32 sm:pb-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
       {/* Page Header */}
-      <div className="space-y-6 max-w-4xl mb-12">
+      <div className="space-y-4 sm:space-y-6 max-w-4xl mb-8 sm:mb-12">
         <ScrollReveal direction="down">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-neutral-900 border border-white/10 rounded-full text-xs font-mono text-neutral-300">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 bg-neutral-900 border border-white/10 rounded-full text-[11px] sm:text-xs font-mono text-neutral-300">
             <Film className="w-3.5 h-3.5 text-white" />
             <span>PORTFOLIO & VERTICAL PREVIEWS</span>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold uppercase tracking-tight text-white">
+          <h1 className="text-3xl sm:text-6xl md:text-7xl font-display font-extrabold uppercase tracking-tight text-white leading-[1.12]">
             ALL VIDEO EDITS.
           </h1>
         </ScrollReveal>
 
         <ScrollReveal delay={0.2}>
-          <div className="space-y-6">
-            <p className="text-base sm:text-lg text-neutral-400 font-sans font-light leading-relaxed max-w-2xl">
+          <div className="space-y-4 sm:space-y-6">
+            <p className="text-xs sm:text-lg text-neutral-400 font-sans font-light leading-relaxed max-w-2xl">
               Live uncompressed video deliverables. Filter by category or explore the entire raw archive directly on Google Drive.
             </p>
 
@@ -52,9 +52,9 @@ export const WorkPage: React.FC = () => {
                 href={portfolioData.masterDriveFolder || "https://drive.google.com/drive/folders/1-fAPohvDgHQ8tLt3TJAOscRYUVtHhLlL?usp=drive_link"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2.5 px-6 py-3.5 bg-white hover:bg-neutral-200 text-black font-mono font-bold text-xs uppercase tracking-widest rounded-xl border border-white transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-95"
+                className="group relative inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-white hover:bg-neutral-200 text-black font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl border border-white transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-95"
               >
-                <HardDrive className="w-4 h-4 text-black" />
+                <HardDrive className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-black" />
                 <span>MASTER DRIVE VAULT</span>
                 <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
               </a>
@@ -95,11 +95,11 @@ export const WorkPage: React.FC = () => {
         </div>
       </ScrollReveal>
 
-      {/* Vertical Projects Grid */}
+      {/* Vertical Projects Grid: 2-columns on mobile, 4 on desktop */}
       {filteredProjects.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
           {filteredProjects.map((project, index) => (
-            <ScrollReveal key={project.id} delay={0.08 * (index % 4)}>
+            <ScrollReveal key={project.id} delay={0.06 * (index % 4)}>
               <ProjectCard project={project} />
             </ScrollReveal>
           ))}
@@ -120,33 +120,33 @@ export const WorkPage: React.FC = () => {
       )}
 
       {/* Bottom Conversion CTA */}
-      <div className="mt-24 pt-16 border-t border-white/10 text-center space-y-6">
+      <div className="mt-12 sm:mt-24 pt-8 sm:pt-16 border-t border-white/10 text-center space-y-4 sm:space-y-6">
         <ScrollReveal delay={0.2}>
-          <h3 className="text-2xl sm:text-4xl font-display font-bold text-white">
+          <h3 className="text-xl sm:text-4xl font-display font-bold text-white">
             HAVE A VIDEO PROJECT IN MIND?
           </h3>
-          <p className="text-sm md:text-base text-neutral-400 max-w-lg mx-auto pt-2">
+          <p className="text-xs sm:text-base text-neutral-400 max-w-lg mx-auto pt-1 sm:pt-2">
             Let's discuss footage requirements, style, and timeline directly on WhatsApp or Gmail.
           </p>
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="pt-4 sm:pt-6 grid grid-cols-2 sm:flex sm:flex-row items-center justify-center gap-2 sm:gap-4">
             <a
               href={`https://wa.me/${portfolioData.contact.whatsappNumber}?text=Hi%20Dhruv%2C%20I%20saw%20your%20video%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-4 bg-white hover:bg-neutral-200 text-black font-mono font-bold text-xs uppercase tracking-widest rounded-xl transition-all shadow-xl hover:scale-[1.02] active:scale-95"
+              className="inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-3 sm:px-8 py-3 sm:py-4 bg-white hover:bg-neutral-200 text-black font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all shadow-xl hover:scale-[1.02] active:scale-95 text-center"
             >
-              <span>WHATSAPP (+91 81609 25636)</span>
-              <ArrowRight className="w-4 h-4" />
+              <span className="truncate">WHATSAPP</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
 
             <a
               href={`https://mail.google.com/mail/?view=cm&fs=1&to=${portfolioData.contact.email}&su=Video%20Editing%20Project%20Inquiry%20-%20Dhruv%20Dobariya`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-neutral-900 hover:bg-neutral-800 text-white font-mono font-bold text-xs uppercase tracking-widest rounded-xl border border-white/15 transition-all shadow-lg hover:scale-[1.02] active:scale-95"
+              className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-8 py-3 sm:py-4 bg-neutral-900 hover:bg-neutral-800 text-white font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl border border-white/15 transition-all shadow-lg hover:scale-[1.02] active:scale-95 text-center"
             >
-              <span>EMAIL ({portfolioData.contact.email})</span>
-              <ArrowRight className="w-4 h-4" />
+              <span className="truncate">EMAIL</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </ScrollReveal>
