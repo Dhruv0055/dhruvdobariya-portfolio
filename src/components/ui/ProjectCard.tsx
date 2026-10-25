@@ -11,7 +11,7 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
   const driveLink = project.googleDriveUrl || project.videoUrl || '';
-  const thumbnail = getGoogleDriveThumbnail(driveLink) || project.posterImage;
+  const thumbnail = project.posterImage || getGoogleDriveThumbnail(driveLink);
 
   return (
     <article 

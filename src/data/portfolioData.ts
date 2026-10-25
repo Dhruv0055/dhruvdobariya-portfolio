@@ -230,7 +230,7 @@ export const portfolioData: SiteConfig = {
       videoSourceType: 'google-drive',
       videoUrl: 'https://drive.google.com/file/d/1sarXkfoz0CV-KHKwYUrQma_9JfKpSB1X/view?usp=drive_link',
       googleDriveUrl: 'https://drive.google.com/file/d/1sarXkfoz0CV-KHKwYUrQma_9JfKpSB1X/view?usp=drive_link',
-      posterImage: 'https://lh3.googleusercontent.com/d/1sarXkfoz0CV-KHKwYUrQma_9JfKpSB1X=w1080',
+      posterImage: '/cinematic-thumb.jpg',
       featured: true
     },
     {

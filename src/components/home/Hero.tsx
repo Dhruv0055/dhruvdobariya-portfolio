@@ -53,7 +53,7 @@ export const Hero: React.FC = () => {
       subtitle: 'High-Impact Color & Sound Mix',
       videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[0]?.googleDriveUrl),
       driveUrl: portfolioData.projects[0]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: getGoogleDriveThumbnail(portfolioData.projects[0]?.googleDriveUrl)
+      image: portfolioData.projects[0]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[0]?.googleDriveUrl)
     },
     {
       id: 'project-shortform',
@@ -64,7 +64,7 @@ export const Hero: React.FC = () => {
       subtitle: 'Retention-Engineered 9:16 Pacing',
       videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[1]?.googleDriveUrl),
       driveUrl: portfolioData.projects[1]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: getGoogleDriveThumbnail(portfolioData.projects[1]?.googleDriveUrl)
+      image: portfolioData.projects[1]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[1]?.googleDriveUrl)
     },
     {
       id: 'project-cinematic',
@@ -75,7 +75,7 @@ export const Hero: React.FC = () => {
       subtitle: 'Film Look Emulation',
       videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[2]?.googleDriveUrl),
       driveUrl: portfolioData.projects[2]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: getGoogleDriveThumbnail(portfolioData.projects[2]?.googleDriveUrl)
+      image: portfolioData.projects[2]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[2]?.googleDriveUrl)
     },
     {
       id: 'project-ugc',
@@ -86,7 +86,7 @@ export const Hero: React.FC = () => {
       subtitle: 'High-Converting Performance',
       videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[3]?.googleDriveUrl),
       driveUrl: portfolioData.projects[3]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: getGoogleDriveThumbnail(portfolioData.projects[3]?.googleDriveUrl)
+      image: portfolioData.projects[3]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[3]?.googleDriveUrl)
     }
   ];
 
