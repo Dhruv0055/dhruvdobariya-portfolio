@@ -182,11 +182,11 @@ export const Hero: React.FC = () => {
 
         {/* Staggered Outline and Solid "PORTFOLIO" Typography Layers */}
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center">
-          {/* Top Layer: Outline Echo */}
+          {/* Top Layer: Outline Echo Kinetic Wave */}
           <motion.div
-            initial={{ opacity: 0.7, x: -10 }}
-            animate={{ opacity: 0.85, x: [-8, -14, -8] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            initial={{ opacity: 0.65, x: -15 }}
+            animate={{ opacity: [0.6, 0.85, 0.6], x: [-24, 18, -24] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
             className="font-display font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] tracking-tight uppercase leading-[0.85] text-stroke-black select-none pointer-events-none -mb-3 sm:-mb-6"
           >
             PORTFOLIO
@@ -197,11 +197,11 @@ export const Hero: React.FC = () => {
             PORTFOLIO
           </h1>
 
-          {/* Bottom Layer: Outline Echo with Wave */}
+          {/* Bottom Layer: Outline Echo Kinetic Wave */}
           <motion.div
-            initial={{ opacity: 0.7, x: 10 }}
-            animate={{ opacity: 0.85, x: [12, 6, 12] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            initial={{ opacity: 0.65, x: 15 }}
+            animate={{ opacity: [0.6, 0.85, 0.6], x: [18, -24, 18] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
             className="font-display font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] tracking-tight uppercase leading-[0.85] text-stroke-black select-none pointer-events-none -mt-3 sm:-mt-6"
           >
             RTFOLIO
@@ -255,6 +255,7 @@ export const Hero: React.FC = () => {
         {/* Radial Wheel Container */}
         <div 
           className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] flex items-center justify-center overflow-visible"
+          style={{ perspective: 1200 }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onMouseDown={(e) => {
@@ -290,15 +291,49 @@ export const Hero: React.FC = () => {
           }}
           onTouchEnd={() => setIsDragging(false)}
         >
-          {/* THE CIRCULAR DIAL RING AT THE BOTTOM */}
-          <div className="absolute -bottom-48 sm:-bottom-64 w-[360px] sm:w-[500px] md:w-[600px] aspect-square rounded-full border border-dashed border-[#0D0D0D]/30 pointer-events-none flex items-center justify-center z-0">
-            {/* Inner Ring */}
-            <div className="w-[85%] aspect-square rounded-full border border-[#0D0D0D]/15 flex items-center justify-center">
-              <div className="w-[70%] aspect-square rounded-full border border-[#0D0D0D]/10" />
-            </div>
+          {/* THE ROTATING CIRCULAR DIAL WHEEL AT THE BOTTOM */}
+          <div className="absolute -bottom-48 sm:-bottom-64 w-[380px] sm:w-[500px] md:w-[620px] aspect-square pointer-events-none flex items-center justify-center z-0">
+            {/* Smoothly Rotating Wheel Track with Ticks */}
+            <motion.div
+              animate={{ rotate: -activeIndex * (360 / total) }}
+              transition={{ type: 'spring', stiffness: 200, damping: 25, mass: 0.8 }}
+              className="w-full h-full relative flex items-center justify-center"
+            >
+              <svg viewBox="0 0 400 400" className="w-full h-full">
+                {/* Outer dashed track */}
+                <circle cx="200" cy="200" r="185" fill="none" stroke="#0D0D0D" strokeOpacity="0.3" strokeDasharray="4 6" strokeWidth="1.5" />
+                {/* Middle thin ring */}
+                <circle cx="200" cy="200" r="165" fill="none" stroke="#0D0D0D" strokeOpacity="0.15" strokeWidth="1" />
+                {/* Inner ring */}
+                <circle cx="200" cy="200" r="140" fill="none" stroke="#0D0D0D" strokeOpacity="0.08" strokeWidth="1" />
+                {/* 36 Radial tick marks around dial */}
+                {[...Array(36)].map((_, i) => {
+                  const angle = (i * 10 * Math.PI) / 180;
+                  const isMajor = i % 3 === 0;
+                  const rInner = isMajor ? 170 : 177;
+                  const rOuter = 185;
+                  const x1 = 200 + rInner * Math.sin(angle);
+                  const y1 = 200 - rInner * Math.cos(angle);
+                  const x2 = 200 + rOuter * Math.sin(angle);
+                  const y2 = 200 - rOuter * Math.cos(angle);
+                  return (
+                    <line
+                      key={i}
+                      x1={x1}
+                      y1={y1}
+                      x2={x2}
+                      y2={y2}
+                      stroke="#0D0D0D"
+                      strokeOpacity={isMajor ? 0.45 : 0.2}
+                      strokeWidth={isMajor ? 1.5 : 1}
+                    />
+                  );
+                })}
+              </svg>
+            </motion.div>
 
-            {/* Dial Arrow pointing up at the active card */}
-            <div className="absolute top-4 flex flex-col items-center justify-center">
+            {/* Stationary Dial Arrow pointing up at the active card */}
+            <div className="absolute top-2 sm:top-4 flex flex-col items-center justify-center z-10 pointer-events-none">
               <span className="text-[#0D0D0D] text-xs font-black">▲</span>
               <span className="font-mono text-[11px] sm:text-xs font-black tracking-widest text-[#0D0D0D] uppercase mt-0.5">
                 {activeItem.label}
@@ -306,8 +341,8 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* THE CARDS FANNING OUT ALONG THE CIRCULAR ARC */}
-          <div className="relative w-full h-full flex items-center justify-center">
+          {/* THE CARDS FANNING OUT ALONG THE 3D RADIAL ARC */}
+          <div className="relative w-full h-full flex items-center justify-center" style={{ transformStyle: 'preserve-3d' }}>
             {carouselItems.map((item, index) => {
               // Calculate offset relative to active card (-2, -1, 0, 1, 2)
               let offset = (index - activeIndex + total) % total;
@@ -319,31 +354,50 @@ export const Hero: React.FC = () => {
 
               const isCenter = offset === 0;
 
-              // Arc positions
-              const rotation = offset * 14; // Degrees of tilt
-              const xTranslate = offset * 155; // Horizontal offset in px
-              const yTranslate = Math.abs(offset) * 22; // Arc drop
-              const scale = isCenter ? 1.05 : 0.88 - Math.abs(offset) * 0.05;
+              // True orbital arc geometry matching the Pinterest reference
+              const angleDeg = offset * 15;
+              const angleRad = (angleDeg * Math.PI) / 180;
+              const arcRadius = 500;
+              const xTranslate = Math.sin(angleRad) * arcRadius;
+              const yTranslate = (1 - Math.cos(angleRad)) * arcRadius * 0.9;
+              const rotation = angleDeg;
+              const rotateY = -offset * 12; // Inward 3D tilt
+              const scale = isCenter ? 1.06 : 0.88 - Math.abs(offset) * 0.05;
               const zIndex = isCenter ? 30 : 20 - Math.abs(offset);
 
               return (
                 <motion.div
                   key={item.id}
-                  layout
                   onClick={() => setActiveIndex(index)}
                   animate={{
                     x: xTranslate,
-                    y: yTranslate,
+                    y: isCenter ? [yTranslate, yTranslate - 6, yTranslate] : yTranslate,
                     rotate: rotation,
+                    rotateY: rotateY,
                     scale: scale,
-                    opacity: 1
+                    opacity: isCenter ? 1 : 0.85 - Math.abs(offset) * 0.08
                   }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 260,
-                    damping: 24
-                  }}
-                  style={{ zIndex }}
+                  transition={
+                    isCenter
+                      ? {
+                          x: { type: 'spring', stiffness: 220, damping: 25 },
+                          rotate: { type: 'spring', stiffness: 220, damping: 25 },
+                          rotateY: { type: 'spring', stiffness: 220, damping: 25 },
+                          scale: { type: 'spring', stiffness: 220, damping: 25 },
+                          opacity: { duration: 0.3 },
+                          y: {
+                            duration: 3.5,
+                            repeat: Infinity,
+                            ease: 'easeInOut'
+                          }
+                        }
+                      : {
+                          type: 'spring',
+                          stiffness: 220,
+                          damping: 25
+                        }
+                  }
+                  style={{ zIndex, transformStyle: 'preserve-3d' }}
                   className={`absolute w-[185px] sm:w-[230px] md:w-[250px] aspect-[9/14] sm:aspect-[9/13] rounded-2xl sm:rounded-3xl cursor-pointer overflow-hidden shadow-2xl transition-shadow ${
                     isCenter ? 'ring-2 ring-[#0D0D0D]/40 shadow-[0_20px_50px_rgba(0,0,0,0.25)]' : 'hover:brightness-105'
                   }`}
