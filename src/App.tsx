@@ -31,9 +31,9 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="relative min-h-screen bg-[#0A0A0C] text-[#F4F4F5] font-sans selection:bg-white selection:text-black flex flex-col justify-between overflow-x-hidden">
+      <div className="relative min-h-screen bg-[#ECEBE8] text-[#0D0D0D] font-sans selection:bg-[#E63E26] selection:text-white flex flex-col justify-between overflow-x-hidden bg-crosshair-grid">
         {/* Film grain subtle overlay */}
-        <div className="fixed inset-0 bg-film-grain pointer-events-none z-0 opacity-30" />
+        <div className="fixed inset-0 bg-film-grain pointer-events-none z-0 opacity-10" />
 
         {/* Global Navbar */}
         <Navbar />

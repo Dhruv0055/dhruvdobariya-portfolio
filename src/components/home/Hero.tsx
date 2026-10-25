@@ -1,164 +1,509 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowDown, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  ExternalLink, 
+  Volume2, 
+  VolumeX, 
+  MessageSquare, 
+  HardDrive, 
+  ChevronLeft, 
+  ChevronRight,
+  Eye
+} from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
-import { VideoPlayer } from '../ui/VideoPlayer';
-import { ScrollReveal } from '../ui/ScrollReveal';
+
+interface CarouselItem {
+  id: string;
+  type: 'me' | 'video' | 'emblem';
+  label: string;
+  badge?: string;
+  title?: string;
+  subtitle?: string;
+  videoUrl?: string;
+  driveUrl?: string;
+  image?: string;
+  bgColor?: string;
+}
 
 export const Hero: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isMuted, setIsMuted] = useState<boolean>(true);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const dragStartX = useRef<number>(0);
+
+  // Cards sequence matching the reference visual wheel:
+  // Center is ME, surrounded by video cards & the iconic crimson red emblem card
+  const carouselItems: CarouselItem[] = [
+    {
+      id: 'me',
+      type: 'me',
+      label: 'ME',
+      badge: 'DVS X2X4',
+      title: 'Dhruv Dobariya',
+      subtitle: 'Freelance Video Editor',
+      image: portfolioData.profileImage || '/dhruv-photo.jpg',
+      driveUrl: portfolioData.masterDriveFolder
+    },
+    {
+      id: 'project-commercial',
+      type: 'video',
+      label: '01 / COMMERCIAL',
+      badge: '01',
+      title: 'Commercial Brand Film',
+      subtitle: 'High-Impact Color & Sound Mix',
+      videoUrl: '/pin-motion.mp4',
+      driveUrl: portfolioData.projects[0]?.googleDriveUrl || portfolioData.masterDriveFolder,
+      image: portfolioData.projects[0]?.posterImage
+    },
+    {
+      id: 'project-shortform',
+      type: 'video',
+      label: '02 / RETENTION',
+      badge: '02',
+      title: 'Short-Form Viral Reel',
+      subtitle: 'Retention-Engineered 9:16 Pacing',
+      videoUrl: '/pin-motion.mp4',
+      driveUrl: portfolioData.projects[1]?.googleDriveUrl || portfolioData.masterDriveFolder,
+      image: portfolioData.projects[1]?.posterImage
+    },
+    {
+      id: 'red-emblem',
+      type: 'emblem',
+      label: 'VISION',
+      badge: 'CREATIVE',
+      title: 'The Director Cut',
+      subtitle: 'DaVinci Resolve Science',
+      bgColor: '#E63E26'
+    },
+    {
+      id: 'project-cinematic',
+      type: 'video',
+      label: '03 / CINEMATIC',
+      badge: '03',
+      title: 'Cinematic Film Edit',
+      subtitle: 'Film Look Emulation',
+      videoUrl: '/pin-motion.mp4',
+      driveUrl: portfolioData.projects[2]?.googleDriveUrl || portfolioData.masterDriveFolder,
+      image: portfolioData.projects[2]?.posterImage
+    },
+    {
+      id: 'project-ugc',
+      type: 'video',
+      label: '04 / UGC ADS',
+      badge: '04',
+      title: 'UGC Direct Response',
+      subtitle: 'High-Converting Performance',
+      videoUrl: '/pin-motion.mp4',
+      driveUrl: portfolioData.projects[3]?.googleDriveUrl || portfolioData.masterDriveFolder,
+      image: portfolioData.projects[3]?.posterImage
+    }
+  ];
+
+  const total = carouselItems.length;
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % total);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + total) % total);
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'ArrowLeft') handlePrev();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  const activeItem = carouselItems[activeIndex];
+
   return (
-    <section className="relative min-h-[85vh] sm:min-h-[92vh] flex flex-col justify-between pt-24 pb-8 sm:pt-32 sm:pb-12 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
-      {/* Main Hero Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center my-auto">
-        {/* Left Column: Typography & CTAs */}
-        <div className="lg:col-span-7 space-y-5 sm:space-y-8">
-          {/* Availability & Name Badge */}
-          <ScrollReveal direction="down" delay={0.1}>
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/5 border border-white/15 text-[11px] sm:text-xs font-mono text-white shadow-sm">
-                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-400" />
-                <span className="tracking-wider uppercase font-bold">DHRUV DOBARIYA</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#141418] border border-white/10 text-[11px] sm:text-xs font-mono text-[#A1A1AA]">
-                <span className="tracking-wider uppercase font-medium">{portfolioData.contact.availability}</span>
-              </div>
-            </div>
-          </ScrollReveal>
+    <section className="relative min-h-screen bg-[#ECEBE8] text-[#0D0D0D] overflow-hidden flex flex-col justify-between pt-24 pb-8 sm:pt-28 sm:pb-12 px-4 sm:px-6 md:px-12 select-none">
+      {/* Precision Crosshairs in Grid */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Top Crosshairs */}
+        <span className="absolute top-28 left-6 sm:left-12 font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
+        <span className="absolute top-28 left-1/4 hidden sm:block font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
+        <span className="absolute top-28 left-2/4 font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
+        <span className="absolute top-28 left-3/4 hidden sm:block font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
+        <span className="absolute top-28 right-6 sm:right-12 font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
 
-          {/* Large Editorial Headline */}
-          <ScrollReveal delay={0.2}>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-white leading-[1.12] uppercase">
-              VIDEO EDITOR <br />
-              <span className="text-neutral-400">
-                & VISUAL STORYTELLER
-              </span>
-            </h1>
-          </ScrollReveal>
+        {/* Mid Crosshairs */}
+        <span className="absolute top-80 left-6 sm:left-12 font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
+        <span className="absolute top-80 right-6 sm:right-12 font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
 
-          {/* Supporting Personal Introduction */}
-          <ScrollReveal delay={0.3}>
-            <p className="text-sm sm:text-lg md:text-xl text-[#A1A1AA] max-w-xl font-sans font-light leading-relaxed">
-              Hi, I'm <strong className="text-white font-medium">Dhruv</strong> — a freelance video editor helping creators, agencies, and businesses turn raw footage into high-retention video content, viral short-form edits, and cinematic brand films.
-            </p>
-          </ScrollReveal>
+        {/* Bottom Crosshairs */}
+        <span className="absolute bottom-16 left-6 sm:left-12 font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
+        <span className="absolute bottom-16 right-6 sm:right-12 font-mono text-sm text-[#0D0D0D]/40 font-light">+</span>
+      </div>
 
-          {/* Action CTAs: Compact 2-column grid on mobile, flex on desktop */}
-          <ScrollReveal delay={0.4}>
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-4 pt-1 sm:pt-2">
-              <Link
-                to="/work"
-                className="group inline-flex items-center justify-center gap-1.5 sm:gap-3 px-3 sm:px-8 py-3 sm:py-4 bg-white hover:bg-neutral-200 text-black font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 shadow-md hover:scale-105 text-center"
-              >
-                <span>MY WORK</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-
-              <a
-                href={portfolioData.masterDriveFolder || "https://drive.google.com/drive/folders/1-fAPohvDgHQ8tLt3TJAOscRYUVtHhLlL?usp=drive_link"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-3 sm:px-7 py-3 sm:py-4 bg-[#141418] hover:bg-[#1C1C22] text-white font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest rounded-full border border-white/20 hover:border-white transition-all duration-300 shadow-md hover:scale-105 active:scale-95 text-center"
-              >
-                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-400 shrink-0" />
-                <span>DRIVE VAULT</span>
-                <ExternalLink className="w-3 h-3 text-neutral-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-
-              <Link
-                to="/contact"
-                className="col-span-2 sm:col-span-1 group inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-4 bg-[#141418] hover:bg-white/10 text-[#A1A1AA] hover:text-white font-mono font-medium text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest border border-white/10 hover:border-white rounded-full transition-all duration-300"
-              >
-                <span>LET'S TALK</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </ScrollReveal>
-
-          {/* Quick Metrics Bar */}
-          <ScrollReveal delay={0.5}>
-            <div className="pt-4 sm:pt-6 border-t border-white/10 grid grid-cols-3 gap-2 sm:gap-6 max-w-lg">
-              <div>
-                <span className="block font-display text-lg sm:text-2xl font-bold text-white">
-                  STUDIO
-                </span>
-                <span className="text-[9px] sm:text-[10px] font-mono text-neutral-500 tracking-wider uppercase">
-                  Master Quality
-                </span>
-              </div>
-              <div>
-                <span className="block font-display text-lg sm:text-2xl font-bold text-white">
-                  +45%
-                </span>
-                <span className="text-[9px] sm:text-[10px] font-mono text-[#71717A] tracking-wider uppercase">
-                  Retention Lift
-                </span>
-              </div>
-              <div>
-                <span className="block font-display text-lg sm:text-2xl font-bold text-[#F4F4F5]">
-                  24-48H
-                </span>
-                <span className="text-[9px] sm:text-[10px] font-mono text-[#71717A] tracking-wider uppercase">
-                  Fast Delivery
-                </span>
-              </div>
-            </div>
-          </ScrollReveal>
+      {/* TOP HEADER ROW: "WELCOME TO MY" & EYE INSIGNIA */}
+      <div className="max-w-6xl mx-auto w-full relative z-10 flex items-start justify-between">
+        {/* Left: "WELCOME TO MY" */}
+        <div className="text-left">
+          <span className="font-mono text-xs sm:text-sm font-extrabold tracking-[0.25em] text-[#0D0D0D] uppercase block">
+            WELCOME
+          </span>
+          <span className="font-mono text-xs sm:text-sm font-extrabold tracking-[0.25em] text-[#0D0D0D] uppercase block">
+            TO MY
+          </span>
         </div>
 
-        {/* Right Column: Featured Video / Reel Preview */}
-        <div className="lg:col-span-5 flex justify-center">
-          <ScrollReveal direction="left" delay={0.3}>
-            <div className="relative group w-full max-w-[240px] xs:max-w-[280px] sm:max-w-sm">
-              <div className="relative bg-[#141418] border border-white/15 group-hover:border-white/30 rounded-2xl overflow-hidden p-2 sm:p-3 shadow-2xl space-y-2 transition-all duration-300">
-                {/* Header Tag */}
-                <div className="flex items-center justify-between pb-1 px-1.5 sm:px-2 text-[9px] sm:text-[10px] font-mono tracking-widest text-[#A1A1AA]">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    <span>SHOWREEL (9:16)</span>
-                  </div>
-                  <span className="text-white font-semibold">4K DRIVE</span>
-                </div>
-
-                {/* Video Component (Embedded Preview) */}
-                <VideoPlayer
-                  videoUrl={portfolioData.showreel.videoUrl}
-                  googleDriveUrl={portfolioData.showreel.googleDriveUrl}
-                  previewVideoUrl={portfolioData.showreel.previewVideoUrl}
-                  posterImage={portfolioData.showreel.posterImage}
-                  title="Dhruv Dobariya Showreel"
-                  sourceType="google-drive"
-                  aspectRatio="vertical"
-                  showDriveCta={true}
-                />
-
-                {/* Footer Link */}
-                <div className="flex items-center justify-between pt-1.5 sm:pt-2 px-1.5 sm:px-2 text-[9px] sm:text-[10px] font-mono text-[#A1A1AA]">
-                  <span>DAVINCI ● PREMIERE</span>
-                  <a
-                    href={portfolioData.showreel.googleDriveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:underline inline-flex items-center gap-1 font-semibold"
-                  >
-                    <span>FULL QUALITY</span>
-                    <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
+        {/* Right: Graphic Eye Emblem */}
+        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#0D0D0D]/30 flex items-center justify-center bg-transparent group hover:border-[#E63E26] transition-colors">
+          <div className="relative flex items-center justify-center">
+            {/* Crosshair accents around the eye */}
+            <span className="absolute -top-1 font-mono text-[9px] text-[#0D0D0D] font-bold">✜</span>
+            <Eye className="w-5 h-5 text-[#0D0D0D] group-hover:text-[#E63E26] transition-colors stroke-[2]" />
+            <span className="absolute -bottom-1 font-mono text-[9px] text-[#0D0D0D] font-bold">✜</span>
+          </div>
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <div className="pt-6 sm:pt-12 flex justify-center items-center">
-        <a
-          href="#about-intro"
-          className="group flex flex-col items-center gap-1.5 text-[10px] sm:text-[11px] font-mono tracking-widest text-[#71717A] hover:text-white transition-colors"
+      {/* CENTER KINETIC TYPOGRAPHY WITH VERTICAL RED ACCENT BLOCK */}
+      <div className="relative my-auto py-6 sm:py-8 max-w-5xl mx-auto w-full z-10 flex flex-col items-center justify-center">
+        {/* Solid Crimson Vermilion Red Vertical Bar */}
+        <div className="absolute top-[-10%] bottom-[-15%] w-24 sm:w-32 md:w-40 bg-[#E63E26] z-0 rounded-xs pointer-events-none shadow-sm" />
+
+        {/* Staggered Outline and Solid "PORTFOLIO" Typography Layers */}
+        <div className="relative z-10 w-full text-center flex flex-col items-center justify-center">
+          {/* Top Layer: Outline Echo */}
+          <motion.div
+            initial={{ opacity: 0.7, x: -10 }}
+            animate={{ opacity: 0.85, x: [-8, -14, -8] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="font-display font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] tracking-tight uppercase leading-[0.85] text-stroke-black select-none pointer-events-none -mb-3 sm:-mb-6"
+          >
+            PORTFOLIO
+          </motion.div>
+
+          {/* Middle Layer: Bold Solid Black */}
+          <h1 className="font-display font-black text-5xl sm:text-8xl md:text-9xl lg:text-[11.5rem] tracking-tight uppercase leading-[0.85] text-[#0D0D0D] select-none drop-shadow-sm">
+            PORTFOLIO
+          </h1>
+
+          {/* Bottom Layer: Outline Echo with Wave */}
+          <motion.div
+            initial={{ opacity: 0.7, x: 10 }}
+            animate={{ opacity: 0.85, x: [12, 6, 12] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="font-display font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] tracking-tight uppercase leading-[0.85] text-stroke-black select-none pointer-events-none -mt-3 sm:-mt-6"
+          >
+            RTFOLIO
+          </motion.div>
+        </div>
+
+        {/* METADATA ROW BELOW HEADLINE: "CUONG NGUYEN" / "DHRUV DOBARIYA" & "MULTIMEDIA DESIGNER" */}
+        <div className="w-full flex items-center justify-between pt-4 sm:pt-6 relative z-10 px-2 sm:px-6">
+          {/* Left Side: Name + Navigation Arrow */}
+          <div className="flex items-center gap-3 sm:gap-6">
+            <button
+              onClick={handlePrev}
+              className="p-1 sm:p-2 rounded-full border border-[#0D0D0D]/20 hover:border-[#0D0D0D] hover:bg-[#0D0D0D] hover:text-white transition-all text-[#0D0D0D]"
+              aria-label="Previous card"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <div className="text-left">
+              <span className="font-mono text-xs sm:text-sm font-black tracking-widest text-[#0D0D0D] uppercase block">
+                {portfolioData.brandName.toUpperCase()}
+              </span>
+              <span className="text-[9px] sm:text-[10px] font-mono text-[#0D0D0D]/60 tracking-wider uppercase block">
+                DIRECTOR'S CUT
+              </span>
+            </div>
+          </div>
+
+          {/* Right Side: Role + Navigation Arrow */}
+          <div className="flex items-center gap-3 sm:gap-6">
+            <div className="text-right">
+              <span className="font-mono text-xs sm:text-sm font-black tracking-widest text-[#0D0D0D] uppercase block">
+                FREELANCE VIDEO EDITOR
+              </span>
+              <span className="text-[9px] sm:text-[10px] font-mono text-[#0D0D0D]/60 tracking-wider uppercase block">
+                RETENTION & COMMERCIAL
+              </span>
+            </div>
+            <button
+              onClick={handleNext}
+              className="p-1 sm:p-2 rounded-full border border-[#0D0D0D]/20 hover:border-[#0D0D0D] hover:bg-[#0D0D0D] hover:text-white transition-all text-[#0D0D0D]"
+              aria-label="Next card"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM SECTION: THE FANNING RADIAL WHEEL CAROUSEL */}
+      <div className="relative w-full max-w-5xl mx-auto z-20 pt-2 pb-4 flex flex-col items-center">
+        {/* Radial Wheel Container */}
+        <div 
+          className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] flex items-center justify-center overflow-visible"
+          onMouseDown={(e) => {
+            setIsDragging(true);
+            dragStartX.current = e.clientX;
+          }}
+          onMouseMove={(e) => {
+            if (!isDragging) return;
+            const diff = e.clientX - dragStartX.current;
+            if (diff > 50) {
+              handlePrev();
+              setIsDragging(false);
+            } else if (diff < -50) {
+              handleNext();
+              setIsDragging(false);
+            }
+          }}
+          onMouseUp={() => setIsDragging(false)}
+          onTouchStart={(e) => {
+            setIsDragging(true);
+            dragStartX.current = e.touches[0].clientX;
+          }}
+          onTouchMove={(e) => {
+            if (!isDragging) return;
+            const diff = e.touches[0].clientX - dragStartX.current;
+            if (diff > 50) {
+              handlePrev();
+              setIsDragging(false);
+            } else if (diff < -50) {
+              handleNext();
+              setIsDragging(false);
+            }
+          }}
+          onTouchEnd={() => setIsDragging(false)}
         >
-          <span>EXPLORE</span>
-          <ArrowDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white animate-bounce" />
-        </a>
+          {/* THE CIRCULAR DIAL RING AT THE BOTTOM */}
+          <div className="absolute -bottom-48 sm:-bottom-64 w-[360px] sm:w-[500px] md:w-[600px] aspect-square rounded-full border border-dashed border-[#0D0D0D]/30 pointer-events-none flex items-center justify-center z-0">
+            {/* Inner Ring */}
+            <div className="w-[85%] aspect-square rounded-full border border-[#0D0D0D]/15 flex items-center justify-center">
+              <div className="w-[70%] aspect-square rounded-full border border-[#0D0D0D]/10" />
+            </div>
+
+            {/* Dial Arrow pointing up at the active card */}
+            <div className="absolute top-4 flex flex-col items-center justify-center">
+              <span className="text-[#0D0D0D] text-xs font-black">▲</span>
+              <span className="font-mono text-[11px] sm:text-xs font-black tracking-widest text-[#0D0D0D] uppercase mt-0.5">
+                {activeItem.label}
+              </span>
+            </div>
+          </div>
+
+          {/* THE CARDS FANNING OUT ALONG THE CIRCULAR ARC */}
+          <div className="relative w-full h-full flex items-center justify-center">
+            {carouselItems.map((item, index) => {
+              // Calculate offset relative to active card (-2, -1, 0, 1, 2)
+              let offset = (index - activeIndex + total) % total;
+              if (offset > total / 2) offset -= total;
+
+              // Only show cards within visible window (-2 to +2)
+              const isVisible = Math.abs(offset) <= 2;
+              if (!isVisible) return null;
+
+              const isCenter = offset === 0;
+
+              // Arc positions
+              const rotation = offset * 14; // Degrees of tilt
+              const xTranslate = offset * 155; // Horizontal offset in px
+              const yTranslate = Math.abs(offset) * 22; // Arc drop
+              const scale = isCenter ? 1.05 : 0.88 - Math.abs(offset) * 0.05;
+              const zIndex = isCenter ? 30 : 20 - Math.abs(offset);
+
+              return (
+                <motion.div
+                  key={item.id}
+                  layout
+                  onClick={() => setActiveIndex(index)}
+                  animate={{
+                    x: xTranslate,
+                    y: yTranslate,
+                    rotate: rotation,
+                    scale: scale,
+                    opacity: 1
+                  }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 260,
+                    damping: 24
+                  }}
+                  style={{ zIndex }}
+                  className={`absolute w-[185px] sm:w-[230px] md:w-[250px] aspect-[9/14] sm:aspect-[9/13] rounded-2xl sm:rounded-3xl cursor-pointer overflow-hidden shadow-2xl transition-shadow ${
+                    isCenter ? 'ring-2 ring-[#0D0D0D]/40 shadow-[0_20px_50px_rgba(0,0,0,0.25)]' : 'hover:brightness-105'
+                  }`}
+                >
+                  {/* CARD TYPE 1: "ME" CARD (Author's Photo & Badge) */}
+                  {item.type === 'me' && (
+                    <div className="relative w-full h-full bg-[#18181B] text-white flex flex-col justify-between p-3.5 sm:p-5">
+                      {/* Photo Background */}
+                      <img
+                        src={item.image}
+                        alt="Dhruv Dobariya"
+                        className="absolute inset-0 w-full h-full object-cover object-center grayscale contrast-125"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none" />
+
+                      {/* Top Stamp Header */}
+                      <div className="relative z-10 flex items-center justify-between">
+                        <span className="font-mono text-[10px] font-bold tracking-widest px-2 py-0.5 rounded bg-black/60 backdrop-blur-md border border-white/20 text-white">
+                          {item.badge}
+                        </span>
+                        <span className="w-2 h-2 rounded-full bg-[#E63E26]" />
+                      </div>
+
+                      {/* Bottom Info */}
+                      <div className="relative z-10 space-y-1">
+                        <span className="text-[10px] font-mono tracking-wider text-[#D4D4D8] uppercase block">
+                          CREATOR / EDITOR
+                        </span>
+                        <h3 className="font-display font-black text-base sm:text-lg text-white uppercase tracking-tight">
+                          {item.title}
+                        </h3>
+                        <p className="text-[10px] sm:text-xs text-neutral-300 font-sans line-clamp-1">
+                          {item.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CARD TYPE 2: VIDEO CARD (Autoplaying from Google Drive / Projects) */}
+                  {item.type === 'video' && (
+                    <div className="relative w-full h-full bg-[#0D0D0D] text-white flex flex-col justify-between p-3.5 sm:p-4 group/card">
+                      {/* AUTOPLAYING VIDEO LOOP */}
+                      <video
+                        src={item.videoUrl}
+                        autoPlay
+                        loop
+                        muted={isMuted}
+                        playsInline
+                        poster={item.image}
+                        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40 pointer-events-none" />
+
+                      {/* Card Top Badges */}
+                      <div className="relative z-10 flex items-center justify-between">
+                        <span className="font-mono text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white">
+                          {item.badge}
+                        </span>
+                        <span className="px-2 py-0.5 rounded-full bg-[#E63E26] text-[8px] sm:text-[9px] font-mono font-bold tracking-wider uppercase text-white">
+                          4K MASTER
+                        </span>
+                      </div>
+
+                      {/* Center Play Indicator on Hover / Center */}
+                      {isCenter && (
+                        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg">
+                            <span className="text-black text-xs font-bold font-mono">4K</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Card Bottom Info & Drive Link */}
+                      <div className="relative z-10 space-y-1">
+                        <span className="text-[9px] font-mono tracking-wider text-neutral-400 uppercase block">
+                          GOOGLE DRIVE PREVIEW
+                        </span>
+                        <h3 className="font-display font-bold text-xs sm:text-sm text-white uppercase truncate">
+                          {item.title}
+                        </h3>
+                        <div className="pt-1 flex items-center justify-between text-[9px] font-mono text-neutral-300">
+                          <span>STREAMING</span>
+                          {item.driveUrl && (
+                            <a
+                              href={item.driveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-white hover:text-[#E63E26] inline-flex items-center gap-1 font-bold"
+                            >
+                              <span>DRIVE</span>
+                              <ExternalLink className="w-2.5 h-2.5" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CARD TYPE 3: THE SIGNATURE CRIMSON RED EMBLEM CARD */}
+                  {item.type === 'emblem' && (
+                    <div className="relative w-full h-full bg-[#E63E26] text-black flex flex-col justify-between p-4 sm:p-5">
+                      {/* Top Marker */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-black text-xs">▼</span>
+                        <span className="font-mono text-[9px] font-black uppercase tracking-widest text-black">
+                          {item.badge}
+                        </span>
+                      </div>
+
+                      {/* Giant Black Brutalist Eye Emblem (Matching Pinterest Reference) */}
+                      <div className="my-auto flex items-center justify-center">
+                        <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-black flex items-center justify-center bg-transparent">
+                          {/* Inner Clover / Petal Silhouette */}
+                          <div className="w-16 h-16 rounded-2xl rotate-45 border-4 border-black flex items-center justify-center">
+                            <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center -rotate-45">
+                              <div className="w-2.5 h-2.5 rounded-full bg-[#E63E26]" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bottom Info */}
+                      <div className="space-y-0.5">
+                        <h3 className="font-display font-black text-sm text-black uppercase">
+                          {item.title}
+                        </h3>
+                        <p className="font-mono text-[9px] text-black/80 font-bold uppercase tracking-wider">
+                          {item.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CONTROLS & DIRECT ACTIONS BAR BELOW THE WHEEL */}
+        <div className="w-full max-w-2xl mt-4 sm:mt-6 pt-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono border-t border-[#0D0D0D]/10 px-2 sm:px-4">
+          {/* Audio Mute/Unmute Toggle */}
+          <button
+            onClick={() => setIsMuted(!isMuted)}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0D0D0D]/20 hover:border-[#0D0D0D] bg-white text-[#0D0D0D] transition-colors font-bold text-[10px] sm:text-xs"
+          >
+            {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#E63E26]" />}
+            <span>{isMuted ? 'UNMUTE AUDIO' : 'MUTED'}</span>
+          </button>
+
+          {/* Quick 1-Click WhatsApp Chat */}
+          <a
+            href={`https://wa.me/${portfolioData.contact.whatsappNumber}?text=Hi%20Dhruv%2C%20I%20saw%20your%20portfolio%20and%20want%20to%20collaborate%20on%20a%20video%20project!`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#0D0D0D] hover:bg-[#E63E26] text-white transition-all font-bold text-[10px] sm:text-xs shadow-sm hover:scale-105"
+          >
+            <MessageSquare className="w-3.5 h-3.5" />
+            <span>CHAT ON WHATSAPP</span>
+          </a>
+
+          {/* Master Google Drive Folder Vault */}
+          <a
+            href={portfolioData.masterDriveFolder || "https://drive.google.com/drive/folders/1-fAPohvDgHQ8tLt3TJAOscRYUVtHhLlL?usp=drive_link"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#0D0D0D]/20 hover:border-[#0D0D0D] bg-white text-[#0D0D0D] hover:text-[#E63E26] transition-colors font-bold text-[10px] sm:text-xs"
+          >
+            <HardDrive className="w-3.5 h-3.5" />
+            <span>4K DRIVE ARCHIVE</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
       </div>
     </section>
   );

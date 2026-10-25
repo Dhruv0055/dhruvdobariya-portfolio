@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Eye } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 
 export const Navbar: React.FC = () => {
@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -47,29 +47,34 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'py-3.5 bg-[#0A0A0C]/90 backdrop-blur-md border-b border-white/10 shadow-xl'
-            : 'py-6 bg-transparent border-b border-transparent'
+            ? 'py-3 bg-[#ECEBE8]/90 backdrop-blur-md border-b border-[#0D0D0D]/10 shadow-sm'
+            : 'py-5 bg-transparent border-b border-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Brand Logo */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
+          {/* Brand Logo with Eye Emblem */}
           <Link
             to="/"
-            className="group flex items-center gap-3 focus:outline-none"
+            className="group flex items-center gap-2.5 focus:outline-none"
           >
-            <div className="w-2.5 h-2.5 rounded-full bg-white group-hover:scale-125 transition-transform duration-300 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
+            <div className="w-7 h-7 rounded-full border border-[#0D0D0D]/40 flex items-center justify-center bg-white group-hover:border-[#E63E26] transition-colors">
+              <Eye className="w-3.5 h-3.5 text-[#0D0D0D] group-hover:text-[#E63E26] transition-colors stroke-[2]" />
+            </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-base tracking-wider text-[#F4F4F5] group-hover:text-white transition-colors">
-                DHRUV DOBARIYA
-              </span>
-              <span className="text-[10px] tracking-widest text-[#71717A] uppercase hidden sm:block font-mono">
-                VIDEO EDITOR
+              <div className="flex items-center gap-1.5">
+                <span className="font-display font-black text-sm sm:text-base tracking-wider text-[#0D0D0D] group-hover:text-[#E63E26] transition-colors">
+                  DHRUV DOBARIYA
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E63E26]" />
+              </div>
+              <span className="text-[9px] tracking-widest text-[#71717A] uppercase hidden sm:block font-mono">
+                VIDEO EDITOR & STORYTELLER
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+          <nav className="hidden md:flex items-center gap-7 lg:gap-9">
             {navLinks.map((link) => {
               const isExternalOrAnchor = link.path.includes('#');
               const isActive = !isExternalOrAnchor && location.pathname === link.path;
@@ -79,10 +84,10 @@ export const Navbar: React.FC = () => {
                   <a
                     key={link.name}
                     href={link.path}
-                    className="text-xs font-mono tracking-widest text-[#A1A1AA] hover:text-white transition-colors py-1 relative group"
+                    className="text-xs font-mono font-bold tracking-widest text-[#0D0D0D]/70 hover:text-[#E63E26] transition-colors py-1 relative group"
                   >
                     {link.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-white group-hover:w-full transition-all duration-300" />
+                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#E63E26] group-hover:w-full transition-all duration-300" />
                   </a>
                 );
               }
@@ -91,13 +96,13 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`text-xs font-mono tracking-widest transition-colors py-1 relative group ${
-                    isActive ? 'text-white font-semibold' : 'text-[#A1A1AA] hover:text-white'
+                  className={`text-xs font-mono font-bold tracking-widest transition-colors py-1 relative group ${
+                    isActive ? 'text-[#0D0D0D] font-black' : 'text-[#0D0D0D]/70 hover:text-[#E63E26]'
                   }`}
                 >
                   {link.name}
                   <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] bg-white transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[#E63E26] transition-all duration-300 ${
                       isActive ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                   />
@@ -110,10 +115,10 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-3">
             <Link
               to="/contact"
-              className="group relative inline-flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold tracking-wider text-black bg-white hover:bg-neutral-200 rounded-full transition-all duration-300 shadow-sm hover:scale-105"
+              className="group relative inline-flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold tracking-wider text-white bg-[#0D0D0D] hover:bg-[#E63E26] rounded-full transition-all duration-300 shadow-sm hover:scale-105 active:scale-95"
             >
               <span>LET'S TALK</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
 
@@ -121,10 +126,10 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-[#F4F4F5] hover:text-white focus:outline-none"
+            className="md:hidden p-2 text-[#0D0D0D] hover:text-[#E63E26] focus:outline-none"
             aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </header>
@@ -137,10 +142,10 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-30 bg-[#0A0A0C]/98 backdrop-blur-2xl md:hidden pt-28 px-6 pb-10 flex flex-col justify-between"
+            className="fixed inset-0 z-30 bg-[#ECEBE8]/98 backdrop-blur-2xl md:hidden pt-24 px-6 pb-10 flex flex-col justify-between"
           >
             <div className="flex flex-col space-y-6">
-              <span className="text-[11px] font-mono tracking-widest text-[#71717A] uppercase">
+              <span className="text-[11px] font-mono tracking-widest text-[#71717A] uppercase font-bold">
                 NAVIGATION
               </span>
               <div className="flex flex-col space-y-5">
@@ -149,7 +154,7 @@ export const Navbar: React.FC = () => {
                     key={link.name}
                     to={link.path}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-2xl font-display font-bold tracking-tight text-[#F4F4F5] hover:text-white transition-colors"
+                    className="text-2xl font-display font-black tracking-tight text-[#0D0D0D] hover:text-[#E63E26] transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -157,15 +162,15 @@ export const Navbar: React.FC = () => {
               </div>
             </div>
 
-            <div className="space-y-6 pt-6 border-t border-white/10">
-              <div className="flex items-center gap-2 text-xs font-mono text-[#A1A1AA]">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <div className="space-y-5 pt-6 border-t border-[#0D0D0D]/10">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#0D0D0D]/70 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-[#E63E26]" />
                 <span>{portfolioData.contact.availability}</span>
               </div>
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3.5 bg-white text-black font-mono text-xs font-bold uppercase tracking-widest rounded-full transition-colors shadow-md"
+                className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#0D0D0D] text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full transition-colors shadow-md"
               >
                 <span>LET'S TALK</span>
                 <ArrowUpRight className="w-4 h-4" />
