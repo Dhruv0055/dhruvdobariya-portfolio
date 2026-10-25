@@ -30,11 +30,9 @@ export const Hero: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
   const dragStartX = useRef<number>(0);
 
-  // Cards sequence matching the reference visual wheel:
-  // Center is ME, surrounded by video cards & the iconic crimson red emblem card
+  // Cards sequence: ME with Dhruv's photo in center, surrounded by project videos from Google Drive
   const carouselItems: CarouselItem[] = [
     {
       id: 'me',
@@ -69,15 +67,6 @@ export const Hero: React.FC = () => {
       image: getGoogleDriveThumbnail(portfolioData.projects[1]?.googleDriveUrl)
     },
     {
-      id: 'red-emblem',
-      type: 'emblem',
-      label: 'VISION',
-      badge: 'CREATIVE',
-      title: 'The Director Cut',
-      subtitle: 'DaVinci Resolve Science',
-      bgColor: '#E63E26'
-    },
-    {
       id: 'project-cinematic',
       type: 'video',
       label: '03 / CINEMATIC',
@@ -110,15 +99,6 @@ export const Hero: React.FC = () => {
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   };
-
-  // Auto-advance wheel animation
-  useEffect(() => {
-    if (isPaused || isDragging) return;
-    const interval = setInterval(() => {
-      handleNext();
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isPaused, isDragging, total]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -176,12 +156,11 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* CENTER KINETIC TYPOGRAPHY WITH VERTICAL RED ACCENT BLOCK */}
-      <div className="relative my-auto py-6 sm:py-8 max-w-5xl mx-auto w-full z-10 flex flex-col items-center justify-center">
-        {/* Solid Crimson Vermilion Red Vertical Bar */}
-        <div className="absolute top-[-10%] bottom-[-15%] w-24 sm:w-32 md:w-40 bg-[#E63E26] z-0 rounded-xs pointer-events-none shadow-sm" />
-
+      <div className="relative my-auto py-4 sm:py-6 max-w-5xl mx-auto w-full z-10 flex flex-col items-center justify-center">
         {/* Staggered Outline and Solid "PORTFOLIO" Typography Layers */}
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center">
+          {/* Solid Crimson Vermilion Red Vertical Bar strictly behind PORTFOLIO letters */}
+          <div className="absolute top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-[#E63E26] z-0 rounded-sm pointer-events-none shadow-sm" />
           {/* Top Layer: Outline Echo Kinetic Wave */}
           <motion.div
             initial={{ opacity: 0.65, x: -15 }}
@@ -256,8 +235,6 @@ export const Hero: React.FC = () => {
         <div 
           className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] flex items-center justify-center overflow-visible"
           style={{ perspective: 1200 }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
           onMouseDown={(e) => {
             setIsDragging(true);
             dragStartX.current = e.clientX;
@@ -354,16 +331,15 @@ export const Hero: React.FC = () => {
 
               const isCenter = offset === 0;
 
-              // True orbital arc geometry matching the Pinterest reference
-              const angleDeg = offset * 15;
-              const angleRad = (angleDeg * Math.PI) / 180;
-              const arcRadius = 500;
-              const xTranslate = Math.sin(angleRad) * arcRadius;
-              const yTranslate = (1 - Math.cos(angleRad)) * arcRadius * 0.9;
-              const rotation = angleDeg;
-              const rotateY = -offset * 12; // Inward 3D tilt
-              const scale = isCenter ? 1.06 : 0.88 - Math.abs(offset) * 0.05;
-              const zIndex = isCenter ? 30 : 20 - Math.abs(offset);
+              // Refined 3D orbital arc geometry with clean horizontal spread
+              const absOffset = Math.abs(offset);
+              const sign = Math.sign(offset);
+              const xTranslate = offset === 0 ? 0 : sign * (absOffset === 1 ? 215 : 395);
+              const yTranslate = absOffset === 0 ? 0 : (absOffset === 1 ? 22 : 54);
+              const rotation = offset * 11;
+              const rotateY = -offset * 14; // Inward 3D tilt
+              const scale = isCenter ? 1.06 : (absOffset === 1 ? 0.86 : 0.74);
+              const zIndex = isCenter ? 30 : 20 - absOffset * 5;
 
               return (
                 <motion.div
@@ -494,41 +470,6 @@ export const Hero: React.FC = () => {
                             </a>
                           )}
                         </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* CARD TYPE 3: THE SIGNATURE CRIMSON RED EMBLEM CARD */}
-                  {item.type === 'emblem' && (
-                    <div className="relative w-full h-full bg-[#E63E26] text-black flex flex-col justify-between p-4 sm:p-5">
-                      {/* Top Marker */}
-                      <div className="flex items-center justify-between">
-                        <span className="text-black text-xs">▼</span>
-                        <span className="font-mono text-[9px] font-black uppercase tracking-widest text-black">
-                          {item.badge}
-                        </span>
-                      </div>
-
-                      {/* Giant Black Brutalist Eye Emblem (Matching Pinterest Reference) */}
-                      <div className="my-auto flex items-center justify-center">
-                        <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-black flex items-center justify-center bg-transparent">
-                          {/* Inner Clover / Petal Silhouette */}
-                          <div className="w-16 h-16 rounded-2xl rotate-45 border-4 border-black flex items-center justify-center">
-                            <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center -rotate-45">
-                              <div className="w-2.5 h-2.5 rounded-full bg-[#E63E26]" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Bottom Info */}
-                      <div className="space-y-0.5">
-                        <h3 className="font-display font-black text-sm text-black uppercase">
-                          {item.title}
-                        </h3>
-                        <p className="font-mono text-[9px] text-black/80 font-bold uppercase tracking-wider">
-                          {item.subtitle}
-                        </p>
                       </div>
                     </div>
                   )}
