@@ -31,6 +31,12 @@ export function getGoogleDriveThumbnail(urlOrId?: string): string {
   return `https://lh3.googleusercontent.com/d/${fileId}=w1080`;
 }
 
+export function getGoogleDriveDirectStreamUrl(urlOrId?: string): string {
+  if (!urlOrId) return '';
+  const fileId = extractGoogleDriveId(urlOrId) || urlOrId;
+  return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
+}
+
 export function parseVideoSource(url?: string): ParsedVideo {
   if (!url) {
     return {

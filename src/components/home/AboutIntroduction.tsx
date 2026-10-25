@@ -21,7 +21,7 @@ export const AboutIntroduction: React.FC = () => {
                 src={portfolioData.profileImage || "/dhruv-photo.jpg"}
                 alt="Dhruv Dobariya - Freelance Video Editor"
                 loading="eager"
-                className="w-full h-full object-cover object-center grayscale contrast-125 group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
               
               {/* Gradient Overlay */}

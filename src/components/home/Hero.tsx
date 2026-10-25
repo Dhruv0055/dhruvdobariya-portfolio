@@ -11,6 +11,7 @@ import {
   Eye
 } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
+import { getGoogleDriveDirectStreamUrl, getGoogleDriveThumbnail } from '../../utils/videoUtils';
 
 interface CarouselItem {
   id: string;
@@ -29,6 +30,7 @@ export const Hero: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
   const dragStartX = useRef<number>(0);
 
   // Cards sequence matching the reference visual wheel:
@@ -49,22 +51,22 @@ export const Hero: React.FC = () => {
       type: 'video',
       label: '01 / COMMERCIAL',
       badge: '01',
-      title: 'Commercial Brand Film',
+      title: portfolioData.projects[0]?.title || 'Commercial Brand Film',
       subtitle: 'High-Impact Color & Sound Mix',
-      videoUrl: '/pin-motion.mp4',
+      videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[0]?.googleDriveUrl),
       driveUrl: portfolioData.projects[0]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: portfolioData.projects[0]?.posterImage
+      image: getGoogleDriveThumbnail(portfolioData.projects[0]?.googleDriveUrl)
     },
     {
       id: 'project-shortform',
       type: 'video',
       label: '02 / RETENTION',
       badge: '02',
-      title: 'Short-Form Viral Reel',
+      title: portfolioData.projects[1]?.title || 'Short-Form Viral Reel',
       subtitle: 'Retention-Engineered 9:16 Pacing',
-      videoUrl: '/pin-motion.mp4',
+      videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[1]?.googleDriveUrl),
       driveUrl: portfolioData.projects[1]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: portfolioData.projects[1]?.posterImage
+      image: getGoogleDriveThumbnail(portfolioData.projects[1]?.googleDriveUrl)
     },
     {
       id: 'red-emblem',
@@ -80,22 +82,22 @@ export const Hero: React.FC = () => {
       type: 'video',
       label: '03 / CINEMATIC',
       badge: '03',
-      title: 'Cinematic Film Edit',
+      title: portfolioData.projects[2]?.title || 'Cinematic Campaign Edit',
       subtitle: 'Film Look Emulation',
-      videoUrl: '/pin-motion.mp4',
+      videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[2]?.googleDriveUrl),
       driveUrl: portfolioData.projects[2]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: portfolioData.projects[2]?.posterImage
+      image: getGoogleDriveThumbnail(portfolioData.projects[2]?.googleDriveUrl)
     },
     {
       id: 'project-ugc',
       type: 'video',
       label: '04 / UGC ADS',
       badge: '04',
-      title: 'UGC Direct Response',
+      title: portfolioData.projects[3]?.title || 'UGC Direct Response',
       subtitle: 'High-Converting Performance',
-      videoUrl: '/pin-motion.mp4',
+      videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[3]?.googleDriveUrl),
       driveUrl: portfolioData.projects[3]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: portfolioData.projects[3]?.posterImage
+      image: getGoogleDriveThumbnail(portfolioData.projects[3]?.googleDriveUrl)
     }
   ];
 
@@ -108,6 +110,15 @@ export const Hero: React.FC = () => {
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   };
+
+  // Auto-advance wheel animation
+  useEffect(() => {
+    if (isPaused || isDragging) return;
+    const interval = setInterval(() => {
+      handleNext();
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [isPaused, isDragging, total]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -244,6 +255,8 @@ export const Hero: React.FC = () => {
         {/* Radial Wheel Container */}
         <div 
           className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] flex items-center justify-center overflow-visible"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           onMouseDown={(e) => {
             setIsDragging(true);
             dragStartX.current = e.clientX;
@@ -335,14 +348,14 @@ export const Hero: React.FC = () => {
                     isCenter ? 'ring-2 ring-[#0D0D0D]/40 shadow-[0_20px_50px_rgba(0,0,0,0.25)]' : 'hover:brightness-105'
                   }`}
                 >
-                  {/* CARD TYPE 1: "ME" CARD (Author's Photo & Badge) */}
+                  {/* CARD TYPE 1: "ME" CARD (Author's Photo & Badge - Natural Color) */}
                   {item.type === 'me' && (
                     <div className="relative w-full h-full bg-[#18181B] text-white flex flex-col justify-between p-3.5 sm:p-5">
-                      {/* Photo Background */}
+                      {/* Photo Background (Natural Full Color, No B&W) */}
                       <img
                         src={item.image}
                         alt="Dhruv Dobariya"
-                        className="absolute inset-0 w-full h-full object-cover object-center grayscale contrast-125"
+                        className="absolute inset-0 w-full h-full object-cover object-center"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none" />
 
@@ -369,10 +382,10 @@ export const Hero: React.FC = () => {
                     </div>
                   )}
 
-                  {/* CARD TYPE 2: VIDEO CARD (Autoplaying from Google Drive / Projects) */}
+                  {/* CARD TYPE 2: VIDEO CARD (Autoplaying Dhruv's Actual Video Deliverables) */}
                   {item.type === 'video' && (
                     <div className="relative w-full h-full bg-[#0D0D0D] text-white flex flex-col justify-between p-3.5 sm:p-4 group/card">
-                      {/* AUTOPLAYING VIDEO LOOP */}
+                      {/* AUTOPLAYING VIDEO LOOP (DHRUV'S DIRECT VIDEOS) */}
                       <video
                         src={item.videoUrl}
                         autoPlay
@@ -380,7 +393,8 @@ export const Hero: React.FC = () => {
                         muted={isMuted}
                         playsInline
                         poster={item.image}
-                        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                        preload="metadata"
+                        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none brightness-95 group-hover/card:brightness-105 transition-all duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40 pointer-events-none" />
 

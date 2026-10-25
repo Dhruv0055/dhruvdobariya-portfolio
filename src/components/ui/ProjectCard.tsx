@@ -26,7 +26,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         rel="noopener noreferrer"
         className="relative w-full aspect-[9/16] overflow-hidden bg-black flex items-center justify-center cursor-pointer group/media"
       >
-        {/* Exact Video Frame Preview / Video Loop */}
+        {/* Exact Video Frame Preview Thumbnail */}
         <img
           src={thumbnail}
           alt={project.title}
@@ -37,18 +37,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).src = project.posterImage || 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1080&auto=format&fit=crop';
           }}
-        />
-
-        {/* Video Auto Loop on Hover / In View */}
-        <video
-          src="/pin-motion.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 pointer-events-none ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}
         />
 
         {/* Gradient Scrim */}
