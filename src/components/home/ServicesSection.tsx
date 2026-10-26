@@ -33,27 +33,37 @@ export const ServicesSection: React.FC = () => {
   return (
     <section id="services" className="py-14 sm:py-24 md:py-32 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-[#0D0D0D]/10 relative bg-[#ECEBE8]">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12 relative">
-        <div className="space-y-2 sm:space-y-3">
-          <ScrollReveal direction="down">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 bg-[#E63E26]/10 border border-[#E63E26]/30 rounded-full text-[11px] sm:text-xs font-mono text-[#E63E26] font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-[#E63E26]" />
-              <span>03 / CORE EDITING SERVICES</span>
-            </div>
-          </ScrollReveal>
+      <div className="mb-8 sm:mb-12 relative space-y-4 sm:space-y-6">
+        <ScrollReveal direction="down">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 bg-[#E63E26]/10 border border-[#E63E26]/30 rounded-full text-[11px] sm:text-xs font-mono text-[#E63E26] font-bold">
+            <Sparkles className="w-3.5 h-3.5 text-[#E63E26]" />
+            <span>03 / CORE EDITING SERVICES</span>
+          </div>
+        </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
-            <h2 className="text-[17px] xs:text-xl sm:text-3xl md:text-5xl lg:text-6xl font-display font-black uppercase tracking-tight text-[#0D0D0D] leading-[1.1]">
-              <span className="block whitespace-nowrap">SPECIALIZED POST-PRODUCTION</span>
-              <span className="block text-[#E63E26] whitespace-nowrap">TAILORED FOR IMPACT.</span>
-            </h2>
-          </ScrollReveal>
-        </div>
+        <ScrollReveal delay={0.1}>
+          <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-display font-black uppercase tracking-tight text-[#0D0D0D] leading-[1.08]">
+            <span className="block whitespace-nowrap">SPECIALIZED POST-PRODUCTION</span>
+            <span className="block text-[#E63E26] whitespace-nowrap">TAILORED FOR IMPACT.</span>
+          </h2>
+        </ScrollReveal>
 
+        {/* Well-placed description row with comfortable width & visual balance */}
         <ScrollReveal delay={0.2}>
-          <p className="text-xs sm:text-sm md:text-base text-[#4A4A4F] max-w-md font-sans leading-relaxed">
-            High-converting short-form, cinematic commercials, performance UGC ads, and surgical DaVinci color grading designed to retain viewers and scale brand authority.
-          </p>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-1 sm:pt-2 border-l-2 border-[#E63E26] pl-4 sm:pl-5">
+            <p className="text-xs sm:text-sm md:text-base text-[#4A4A4F] font-sans leading-relaxed max-w-2xl">
+              High-converting short-form, cinematic commercials, performance UGC ads, and surgical DaVinci color grading designed to retain viewers and scale brand authority.
+            </p>
+
+            <div className="flex items-center gap-2 font-mono text-[10px] sm:text-xs font-bold text-[#0D0D0D] shrink-0">
+              <span className="px-3 py-1 rounded-full bg-white border border-[#0D0D0D]/10 shadow-xs">
+                4 CORE DISCIPLINES
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[#E63E26]/10 text-[#E63E26] border border-[#E63E26]/25">
+                CLICK TO EXPAND
+              </span>
+            </div>
+          </div>
         </ScrollReveal>
       </div>
 
