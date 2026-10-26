@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Star, CheckCircle, MessageSquare } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { ScrollReveal } from '../ui/ScrollReveal';
 
 export const TestimonialsSection: React.FC = () => {
+  const [isPaused, setIsPaused] = useState(false);
+
   if (!portfolioData.testimonials || portfolioData.testimonials.length === 0) {
     return null;
   }
 
+  // Duplicate items so there is continuous, gapless looping across any display
+  const marqueeList = [
+    ...portfolioData.testimonials,
+    ...portfolioData.testimonials,
+    ...portfolioData.testimonials
+  ];
+
   return (
-    <section id="testimonials" className="py-12 sm:py-20 md:py-32 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-[#0D0D0D]/10">
+    <section id="testimonials" className="py-14 sm:py-24 md:py-32 overflow-hidden border-t border-[#0D0D0D]/10 bg-[#ECEBE8]">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
         <div>
           <ScrollReveal direction="down">
             <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 bg-[#0D0D0D] text-white rounded-full text-[11px] sm:text-xs font-mono mb-2 sm:mb-3">
@@ -29,73 +39,101 @@ export const TestimonialsSection: React.FC = () => {
 
         <ScrollReveal delay={0.2}>
           <p className="text-xs sm:text-sm md:text-base text-[#0D0D0D]/70 max-w-md font-sans leading-relaxed">
-            Direct feedback and campaign outcomes from collaborating creators, brand founders, and creative directors.
+            Direct feedback and campaign outcomes from collaborating creators, brand founders, and creative directors. Hover to pause.
           </p>
         </ScrollReveal>
       </div>
 
-      {/* Testimonials Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-        {portfolioData.testimonials.map((test, index) => {
-          const authorName = test.author || test.clientName || 'Client';
-          const authorRole = test.clientRole || test.role || '';
-          const quoteText = test.quote || test.content || '';
-          const initials = authorName
-            .split(' ')
-            .map((n) => n[0])
-            .join('')
-            .slice(0, 2);
+      {/* Continuous Left-to-Right Sliding Track with Small Boxes */}
+      <div className="relative w-full overflow-hidden py-2 select-none">
+        {/* Soft Edge Blurs */}
+        <div className="absolute top-0 bottom-0 left-0 w-8 sm:w-20 bg-gradient-to-r from-[#ECEBE8] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-8 sm:w-20 bg-gradient-to-l from-[#ECEBE8] to-transparent z-10 pointer-events-none" />
 
-          return (
-            <ScrollReveal key={test.id || index} delay={0.06 * index}>
-              <div className="h-full bg-white hover:bg-white border border-[#0D0D0D]/10 hover:border-[#E63E26] rounded-xl sm:rounded-2xl p-4 sm:p-8 flex flex-col justify-between space-y-4 sm:space-y-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
-                <div className="space-y-3 sm:space-y-5">
-                  {/* Top Bar: Stars + Verified Badge + Metric */}
-                  <div className="flex items-center justify-between gap-2 flex-wrap">
-                    <div className="flex items-center gap-0.5 sm:gap-1 text-[#E63E26]">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#E63E26] text-[#E63E26]" />
-                      ))}
+        <div
+          className="w-full overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+        >
+          <motion.div
+            className="flex gap-3.5 sm:gap-5 w-max will-change-transform transform-gpu"
+            animate={{
+              x: isPaused ? undefined : ['-33.333%', '0%']
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: 'loop',
+                duration: 28,
+                ease: 'linear'
+              }
+            }}
+          >
+            {marqueeList.map((test, index) => {
+              const authorName = test.author || test.clientName || 'Client';
+              const authorRole = test.clientRole || test.role || '';
+              const quoteText = test.quote || test.content || '';
+              const initials = authorName
+                .split(' ')
+                .map((n) => n[0])
+                .join('')
+                .slice(0, 2);
+
+              return (
+                <div
+                  key={`test-${test.id || index}-${index}`}
+                  className="w-[280px] sm:w-[320px] md:w-[350px] shrink-0 bg-white border border-[#0D0D0D]/12 hover:border-[#E63E26] rounded-xl sm:rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-3.5 sm:space-y-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group"
+                >
+                  <div className="space-y-2.5">
+                    {/* Top Bar: Stars + Metric */}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-0.5 text-[#E63E26]">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-[#E63E26] text-[#E63E26]" />
+                        ))}
+                      </div>
+
+                      {test.metric && (
+                        <span className="px-2 py-0.5 bg-[#0D0D0D]/5 border border-[#0D0D0D]/10 rounded-md text-[9px] sm:text-[10px] font-mono font-bold text-[#0D0D0D]">
+                          {test.metric}
+                        </span>
+                      )}
                     </div>
 
-                    {test.metric && (
-                      <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-[#0D0D0D]/5 border border-[#0D0D0D]/10 rounded-full text-[10px] sm:text-[11px] font-mono font-bold text-[#0D0D0D]">
-                        {test.metric}
-                      </span>
-                    )}
+                    {/* Quote Text */}
+                    <p className="text-xs sm:text-[13px] text-[#0D0D0D]/85 font-sans leading-relaxed line-clamp-3">
+                      "{quoteText}"
+                    </p>
                   </div>
 
-                  {/* Quote Content */}
-                  <p className="text-xs sm:text-base text-[#0D0D0D]/80 font-sans leading-relaxed">
-                    "{quoteText}"
-                  </p>
+                  {/* Author Row */}
+                  <div className="pt-2.5 border-t border-[#0D0D0D]/10 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#0D0D0D] text-white flex items-center justify-center font-display font-bold text-[10px] sm:text-[11px] group-hover:bg-[#E63E26] transition-colors shrink-0">
+                        {initials}
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="font-display font-bold text-xs text-[#0D0D0D] truncate">
+                          {authorName}
+                        </h4>
+                        <p className="text-[9px] sm:text-[10px] font-mono text-[#0D0D0D]/60 truncate">
+                          {authorRole}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="inline-flex items-center gap-1 text-[10px] font-mono text-[#0D0D0D]/60 shrink-0">
+                      <CheckCircle className="w-3 h-3 text-[#E63E26]" />
+                      <span className="hidden xs:inline">Verified</span>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Author Info & Verified Client Tag */}
-                <div className="pt-3 sm:pt-5 border-t border-[#0D0D0D]/10 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2.5 sm:gap-3">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#0D0D0D] text-white flex items-center justify-center font-display font-bold text-[11px] sm:text-xs group-hover:bg-[#E63E26] transition-colors shrink-0">
-                      {initials}
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-xs sm:text-base text-[#0D0D0D]">
-                        {authorName}
-                      </h4>
-                      <p className="text-[10px] sm:text-xs font-mono text-[#0D0D0D]/60">
-                        {authorRole} {test.company ? `● ${test.company}` : ''}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="hidden sm:inline-flex items-center gap-1 text-[11px] font-mono text-[#0D0D0D]/60">
-                    <CheckCircle className="w-3.5 h-3.5 text-[#E63E26]" />
-                    <span>Verified Client</span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          );
-        })}
+              );
+            })}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

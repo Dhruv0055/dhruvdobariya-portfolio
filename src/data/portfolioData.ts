@@ -98,6 +98,13 @@ export const portfolioData: SiteConfig = {
       title: 'COLOR, SFX & FINISHING',
       description: 'Apply DaVinci color grading, audio leveling, motion graphics, transitions, and export in master 4K uncompressed format.',
       details: ['DaVinci Resolve color grade', 'Custom sound design & SFX mix', 'Uncompressed 4K master export']
+    },
+    {
+      number: '04',
+      step: '04',
+      title: 'REVISIONS & 4K DELIVERY',
+      description: 'Rapid turnaround on fine-tuning revisions, final audio mix polish, and delivery of uncompressed 4K master files via Google Drive.',
+      details: ['Prompt revision rounds', 'Final sound & audio leveling', '4K master Google Drive delivery']
     }
   ],
 

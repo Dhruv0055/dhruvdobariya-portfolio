@@ -50,19 +50,10 @@ export const ServicesSection: React.FC = () => {
 
         {/* Well-placed description row with comfortable width & visual balance */}
         <ScrollReveal delay={0.2}>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-1 sm:pt-2 border-l-2 border-[#E63E26] pl-4 sm:pl-5">
+          <div className="pt-1 sm:pt-2 border-l-2 border-[#E63E26] pl-4 sm:pl-5">
             <p className="text-xs sm:text-sm md:text-base text-[#4A4A4F] font-sans leading-relaxed max-w-2xl">
               High-converting short-form, cinematic commercials, performance UGC ads, and surgical DaVinci color grading designed to retain viewers and scale brand authority.
             </p>
-
-            <div className="flex items-center gap-2 font-mono text-[10px] sm:text-xs font-bold text-[#0D0D0D] shrink-0">
-              <span className="px-3 py-1 rounded-full bg-white border border-[#0D0D0D]/10 shadow-xs">
-                4 CORE DISCIPLINES
-              </span>
-              <span className="px-3 py-1 rounded-full bg-[#E63E26]/10 text-[#E63E26] border border-[#E63E26]/25">
-                CLICK TO EXPAND
-              </span>
-            </div>
           </div>
         </ScrollReveal>
       </div>
