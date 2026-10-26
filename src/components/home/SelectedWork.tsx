@@ -10,8 +10,8 @@ export const SelectedWork: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const projects = portfolioData.projects;
 
-  // Duplicate projects 3 times for a completely seamless, gapless infinite loop
-  const marqueeProjects = [...projects, ...projects, ...projects];
+  // Seamless infinite loop containing all 9 unique video deliverables
+  const marqueeProjects = [...projects, ...projects];
 
   return (
     <section id="work" className="py-14 sm:py-20 md:py-28 overflow-hidden border-t border-[#0D0D0D]/10 bg-[#ECEBE8]">
@@ -36,7 +36,7 @@ export const SelectedWork: React.FC = () => {
         <ScrollReveal delay={0.2}>
           <div className="space-y-2 sm:space-y-4 max-w-sm">
             <p className="text-xs sm:text-sm text-[#4A4A4F] font-sans">
-              Curated high-impact video deliverables. Hover any project to pause and click to open the master uncompressed file.
+              Curated high-impact video deliverables ({projects.length} uncompressed master edits). Hover any project to pause and click to stream directly on Google Drive.
             </p>
             <div className="flex items-center gap-3">
               <Link
@@ -66,13 +66,13 @@ export const SelectedWork: React.FC = () => {
         <motion.div
           className="flex gap-4 sm:gap-6 w-max"
           animate={{
-            x: isPaused ? undefined : ['-33.333%', '0%']
+            x: isPaused ? undefined : ['-50%', '0%']
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: 'loop',
-              duration: 24,
+              duration: 36,
               ease: 'linear'
             }
           }}
