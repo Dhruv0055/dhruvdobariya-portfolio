@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ArrowRight, HardDrive, ExternalLink } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { ProjectCard } from '../ui/ProjectCard';
 import { ScrollReveal } from '../ui/ScrollReveal';
 
 export const SelectedWork: React.FC = () => {
+  const [isPaused, setIsPaused] = useState(false);
   const projects = portfolioData.projects;
 
+  // Duplicate projects 3 times for a completely seamless, gapless infinite loop
+  const marqueeProjects = [...projects, ...projects, ...projects];
+
   return (
-    <section id="work" className="py-14 sm:py-24 md:py-32 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto border-t border-[#0D0D0D]/10 bg-[#ECEBE8]">
+    <section id="work" className="py-14 sm:py-20 md:py-28 overflow-hidden border-t border-[#0D0D0D]/10 bg-[#ECEBE8]">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
         <div>
           <ScrollReveal direction="down">
             <span className="font-mono text-xs text-[#E63E26] tracking-widest uppercase block mb-1.5 sm:mb-2 font-bold">
@@ -31,7 +36,7 @@ export const SelectedWork: React.FC = () => {
         <ScrollReveal delay={0.2}>
           <div className="space-y-2 sm:space-y-4 max-w-sm">
             <p className="text-xs sm:text-sm text-[#4A4A4F] font-sans">
-              Curated high-impact video edits. Click any project to stream the uncompressed master file on Google Drive in full 4K quality.
+              Curated high-impact video deliverables. Hover any project to pause and click to open the master uncompressed file.
             </p>
             <div className="flex items-center gap-3">
               <Link
@@ -46,17 +51,45 @@ export const SelectedWork: React.FC = () => {
         </ScrollReveal>
       </div>
 
-      {/* Vertical Projects Grid: 2-columns on mobile (2x2 grid), 4-columns on desktop */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-        {projects.map((project, index) => (
-          <ScrollReveal key={project.id} delay={0.06 * index}>
-            <ProjectCard project={project} />
-          </ScrollReveal>
-        ))}
+      {/* CONTINUOUS SMOOTH LEFT-TO-RIGHT MARQUEE (NOT IN BOX) */}
+      <div 
+        className="relative w-full overflow-hidden py-4 select-none cursor-grab active:cursor-grabbing"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
+        {/* Soft edge fades for high-end cinematic blend */}
+        <div className="absolute top-0 bottom-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#ECEBE8] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#ECEBE8] to-transparent z-10 pointer-events-none" />
+
+        <motion.div
+          className="flex gap-4 sm:gap-6 w-max"
+          animate={{
+            x: isPaused ? undefined : ['-33.333%', '0%']
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: 'loop',
+              duration: 24,
+              ease: 'linear'
+            }
+          }}
+        >
+          {marqueeProjects.map((project, index) => (
+            <div
+              key={`${project.id}-${index}`}
+              className="w-[210px] sm:w-[250px] md:w-[280px] shrink-0"
+            >
+              <ProjectCard project={project} />
+            </div>
+          ))}
+        </motion.div>
       </div>
 
       {/* Bottom Full Gallery & Drive Folder CTA */}
-      <div className="mt-8 sm:mt-16 grid grid-cols-2 sm:flex sm:flex-row items-center justify-center gap-2.5 sm:gap-4">
+      <div className="mt-8 sm:mt-12 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-2 sm:flex sm:flex-row items-center justify-center gap-2.5 sm:gap-4">
         <ScrollReveal delay={0.2}>
           <Link
             to="/work"
