@@ -24,9 +24,9 @@ export const AboutIntroduction: React.FC = () => {
       <span className="absolute top-6 left-6 sm:left-12 font-mono text-sm text-white/40 pointer-events-none z-10">+</span>
       <span className="absolute top-6 right-6 sm:right-12 font-mono text-sm text-white/40 pointer-events-none z-10">+</span>
 
-      {/* FOREGROUND CONTENT: COMPACT & POSITIONED ON THE LEFT */}
+      {/* FOREGROUND CONTENT: COMPACT & POSITIONED ON THE LEFT (NO GLASSY BOX) */}
       <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="max-w-lg text-left bg-black/40 sm:bg-black/30 backdrop-blur-md p-5 sm:p-7 rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl">
+        <div className="max-w-lg text-left">
           {/* Header Status & Approach Tag */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-3 sm:mb-4">
             <ScrollReveal direction="down">
