@@ -30,6 +30,7 @@ export const Hero: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
   const dragStartX = useRef<number>(0);
 
   // Cards sequence: ME with Dhruv's photo in center, surrounded by project videos from Google Drive
@@ -51,7 +52,7 @@ export const Hero: React.FC = () => {
       badge: '01',
       title: portfolioData.projects[0]?.title || 'Commercial Brand Film',
       subtitle: 'High-Impact Color & Sound Mix',
-      videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[0]?.googleDriveUrl),
+      videoUrl: portfolioData.projects[0]?.previewVideoUrl || getGoogleDriveDirectStreamUrl(portfolioData.projects[0]?.googleDriveUrl),
       driveUrl: portfolioData.projects[0]?.googleDriveUrl || portfolioData.masterDriveFolder,
       image: portfolioData.projects[0]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[0]?.googleDriveUrl)
     },
@@ -62,7 +63,7 @@ export const Hero: React.FC = () => {
       badge: '02',
       title: portfolioData.projects[1]?.title || 'Short-Form Viral Reel',
       subtitle: 'Retention-Engineered 9:16 Pacing',
-      videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[1]?.googleDriveUrl),
+      videoUrl: portfolioData.projects[1]?.previewVideoUrl || getGoogleDriveDirectStreamUrl(portfolioData.projects[1]?.googleDriveUrl),
       driveUrl: portfolioData.projects[1]?.googleDriveUrl || portfolioData.masterDriveFolder,
       image: portfolioData.projects[1]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[1]?.googleDriveUrl)
     },
@@ -73,9 +74,9 @@ export const Hero: React.FC = () => {
       badge: '03',
       title: portfolioData.projects[2]?.title || 'Cinematic Campaign Edit',
       subtitle: 'Film Look Emulation',
-      videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[2]?.googleDriveUrl),
+      videoUrl: portfolioData.projects[2]?.previewVideoUrl || '/cinematic-video.mp4',
       driveUrl: portfolioData.projects[2]?.googleDriveUrl || portfolioData.masterDriveFolder,
-      image: portfolioData.projects[2]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[2]?.googleDriveUrl)
+      image: portfolioData.projects[2]?.posterImage || '/cinematic-thumb.jpg'
     },
     {
       id: 'project-ugc',
@@ -84,7 +85,7 @@ export const Hero: React.FC = () => {
       badge: '04',
       title: portfolioData.projects[3]?.title || 'UGC Direct Response',
       subtitle: 'High-Converting Performance',
-      videoUrl: getGoogleDriveDirectStreamUrl(portfolioData.projects[3]?.googleDriveUrl),
+      videoUrl: portfolioData.projects[3]?.previewVideoUrl || getGoogleDriveDirectStreamUrl(portfolioData.projects[3]?.googleDriveUrl),
       driveUrl: portfolioData.projects[3]?.googleDriveUrl || portfolioData.masterDriveFolder,
       image: portfolioData.projects[3]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[3]?.googleDriveUrl)
     }
@@ -99,6 +100,25 @@ export const Hero: React.FC = () => {
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   };
+
+  // Continuous motion effect: automatically rotates left to right at medium speed
+  useEffect(() => {
+    if (isPaused || isDragging) return;
+    const interval = setInterval(() => {
+      // Moves cards continuously from left to right across the 3D orbital arc
+      handlePrev();
+    }, 3200);
+    return () => clearInterval(interval);
+  }, [isPaused, isDragging, total]);
+
+  // Ensure autoplaying videos continuously playback without pause
+  useEffect(() => {
+    const videos = document.querySelectorAll('video');
+    videos.forEach((v) => {
+      v.muted = isMuted;
+      v.play().catch(() => {});
+    });
+  }, [activeIndex, isMuted]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -218,13 +238,22 @@ export const Hero: React.FC = () => {
                 RETENTION & COMMERCIAL
               </span>
             </div>
-            <button
-              onClick={handleNext}
-              className="p-1 sm:p-2 rounded-full border border-[#0D0D0D]/20 hover:border-[#0D0D0D] hover:bg-[#0D0D0D] hover:text-white transition-all text-[#0D0D0D]"
-              aria-label="Next card"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <button
+                onClick={handlePrev}
+                className="p-1 sm:p-2 rounded-full border border-[#0D0D0D]/20 hover:border-[#0D0D0D] hover:bg-[#0D0D0D] hover:text-white transition-all text-[#0D0D0D]"
+                aria-label="Previous card"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="p-1 sm:p-2 rounded-full border border-[#0D0D0D]/20 hover:border-[#0D0D0D] hover:bg-[#0D0D0D] hover:text-white transition-all text-[#0D0D0D]"
+                aria-label="Next card"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -235,6 +264,8 @@ export const Hero: React.FC = () => {
         <div 
           className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] flex items-center justify-center overflow-visible"
           style={{ perspective: 1200 }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           onMouseDown={(e) => {
             setIsDragging(true);
             dragStartX.current = e.clientX;
@@ -319,7 +350,18 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* THE CARDS FANNING OUT ALONG THE 3D RADIAL ARC */}
-          <div className="relative w-full h-full flex items-center justify-center" style={{ transformStyle: 'preserve-3d' }}>
+          <motion.div
+            animate={{
+              x: [-16, 16, -16]
+            }}
+            transition={{
+              duration: 5.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="relative w-full h-full flex items-center justify-center"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
             {carouselItems.map((item, index) => {
               // Calculate offset relative to active card (-2, -1, 0, 1, 2)
               let offset = (index - activeIndex + total) % total;
@@ -417,15 +459,26 @@ export const Hero: React.FC = () => {
                     <div className="relative w-full h-full bg-[#0D0D0D] text-white flex flex-col justify-between p-3.5 sm:p-4 group/card">
                       {/* AUTOPLAYING VIDEO LOOP (DHRUV'S DIRECT VIDEOS) */}
                       <video
+                        ref={(el) => {
+                          if (el) {
+                            el.muted = isMuted;
+                            el.defaultMuted = true;
+                            if (el.paused) {
+                              el.play().catch(() => {});
+                            }
+                          }
+                        }}
                         src={item.videoUrl}
                         autoPlay
                         loop
                         muted={isMuted}
                         playsInline
                         poster={item.image}
-                        preload="metadata"
+                        preload="auto"
                         className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none brightness-95 group-hover/card:brightness-105 transition-all duration-500"
-                      />
+                      >
+                        {item.videoUrl && <source src={item.videoUrl} type="video/mp4" />}
+                      </video>
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40 pointer-events-none" />
 
                       {/* Card Top Badges */}
@@ -476,7 +529,7 @@ export const Hero: React.FC = () => {
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
 
         {/* CONTROLS & DIRECT ACTIONS BAR BELOW THE WHEEL */}

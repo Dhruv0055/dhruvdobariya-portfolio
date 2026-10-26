@@ -26,18 +26,44 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         rel="noopener noreferrer"
         className="relative w-full aspect-[9/16] overflow-hidden bg-black flex items-center justify-center cursor-pointer group/media"
       >
-        {/* Exact Video Frame Preview Thumbnail */}
-        <img
-          src={thumbnail}
-          alt={project.title}
-          className={`w-full h-full object-cover transition-all duration-700 ${
-            isHovered ? 'scale-105 brightness-100' : 'brightness-90'
-          }`}
-          loading="lazy"
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).src = project.posterImage || 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1080&auto=format&fit=crop';
-          }}
-        />
+        {/* Exact Video Frame Preview Thumbnail OR Actual Video Stream */}
+        {project.previewVideoUrl ? (
+          <video
+            ref={(el) => {
+              if (el) {
+                el.muted = true;
+                el.defaultMuted = true;
+                if (el.paused) {
+                  el.play().catch(() => {});
+                }
+              }
+            }}
+            src={project.previewVideoUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster={thumbnail}
+            className={`w-full h-full object-cover transition-all duration-700 ${
+              isHovered ? 'scale-105 brightness-100' : 'brightness-90'
+            }`}
+          >
+            <source src={project.previewVideoUrl} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={thumbnail}
+            alt={project.title}
+            className={`w-full h-full object-cover transition-all duration-700 ${
+              isHovered ? 'scale-105 brightness-100' : 'brightness-90'
+            }`}
+            loading="lazy"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = project.posterImage || 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1080&auto=format&fit=crop';
+            }}
+          />
+        )}
 
         {/* Gradient Scrim */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none" />
