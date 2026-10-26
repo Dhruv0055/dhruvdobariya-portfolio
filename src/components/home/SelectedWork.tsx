@@ -94,7 +94,7 @@ export const SelectedWork: React.FC = () => {
             onTouchEnd={() => setIsPausedTop(false)}
           >
             <motion.div
-              className="flex gap-3.5 sm:gap-5 w-max"
+              className="flex gap-3.5 sm:gap-5 w-max will-change-transform transform-gpu"
               animate={{
                 x: isPausedTop ? undefined : ['-33.333%', '0%']
               }}
@@ -102,7 +102,7 @@ export const SelectedWork: React.FC = () => {
                 x: {
                   repeat: Infinity,
                   repeatType: 'loop',
-                  duration: 36,
+                  duration: 42,
                   ease: 'linear'
                 }
               }}
@@ -135,7 +135,7 @@ export const SelectedWork: React.FC = () => {
             onTouchEnd={() => setIsPausedBottom(false)}
           >
             <motion.div
-              className="flex gap-3.5 sm:gap-5 w-max"
+              className="flex gap-3.5 sm:gap-5 w-max will-change-transform transform-gpu"
               animate={{
                 x: isPausedBottom ? undefined : ['0%', '-33.333%']
               }}
@@ -143,7 +143,7 @@ export const SelectedWork: React.FC = () => {
                 x: {
                   repeat: Infinity,
                   repeatType: 'loop',
-                  duration: 36,
+                  duration: 42,
                   ease: 'linear'
                 }
               }}
