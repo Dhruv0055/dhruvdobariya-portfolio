@@ -13,24 +13,29 @@ export const SelectedWork: React.FC = () => {
 
   // PART 1: Upper Track (Commercial & Cinematic Deliverables) - Flows Left to Right
   const topProjects = [
-    allProjects[0], // 01 / Commercial Brand Film
-    allProjects[2], // 03 / Cinematic Campaign Edit
-    allProjects[4], // 05 / Commercial Visual Campaign
-    allProjects[6], // 07 / Direct Response UGC Ad
-    allProjects[7], // 08 / Cinematic Film Grading
+    allProjects[0],  // 01 / Commercial Brand Film
+    allProjects[2],  // 03 / Cinematic Campaign Edit
+    allProjects[4],  // 05 / Commercial Visual Campaign
+    allProjects[6],  // 07 / Direct Response UGC Ad
+    allProjects[7],  // 08 / Cinematic Film Grading
+    allProjects[9],  // 10 / Automotive Motion Grade
+    allProjects[12], // 13 / Commercial Product Launch
   ].filter(Boolean);
 
   // PART 2: Lower Track (Short-Form & Viral Retention Reels) - Flows Right to Left
   const bottomProjects = [
-    allProjects[1], // 02 / Short-Form Retention Edit
-    allProjects[3], // 04 / UGC Brand Creative Ad
-    allProjects[5], // 06 / Viral Retention Reel
-    allProjects[8], // 09 / High-Retention Creative Edit
+    allProjects[1],  // 02 / Short-Form Retention Edit
+    allProjects[3],  // 04 / UGC Brand Creative Ad
+    allProjects[5],  // 06 / Viral Retention Reel
+    allProjects[8],  // 09 / High-Retention Creative Edit
+    allProjects[10], // 11 / E-Commerce Direct Response
+    allProjects[11], // 12 / Viral Hook Retention Reel
+    allProjects[13], // 14 / Creator Aesthetic Social Cut
   ].filter(Boolean);
 
-  // Duplicate each row for seamless infinite looping
-  const marqueeTop = [...topProjects, ...topProjects];
-  const marqueeBottom = [...bottomProjects, ...bottomProjects];
+  // Triplicate each row so there is physically ZERO gap on any screen size or 4K display
+  const marqueeTop = [...topProjects, ...topProjects, ...topProjects];
+  const marqueeBottom = [...bottomProjects, ...bottomProjects, ...bottomProjects];
 
   return (
     <section id="work" className="py-14 sm:py-20 md:py-28 overflow-hidden border-t border-[#0D0D0D]/10 bg-[#ECEBE8]">
@@ -91,13 +96,13 @@ export const SelectedWork: React.FC = () => {
             <motion.div
               className="flex gap-3.5 sm:gap-5 w-max"
               animate={{
-                x: isPausedTop ? undefined : ['-50%', '0%']
+                x: isPausedTop ? undefined : ['-33.333%', '0%']
               }}
               transition={{
                 x: {
                   repeat: Infinity,
                   repeatType: 'loop',
-                  duration: 32,
+                  duration: 36,
                   ease: 'linear'
                 }
               }}
@@ -132,13 +137,13 @@ export const SelectedWork: React.FC = () => {
             <motion.div
               className="flex gap-3.5 sm:gap-5 w-max"
               animate={{
-                x: isPausedBottom ? undefined : ['0%', '-50%']
+                x: isPausedBottom ? undefined : ['0%', '-33.333%']
               }}
               transition={{
                 x: {
                   repeat: Infinity,
                   repeatType: 'loop',
-                  duration: 28,
+                  duration: 36,
                   ease: 'linear'
                 }
               }}
