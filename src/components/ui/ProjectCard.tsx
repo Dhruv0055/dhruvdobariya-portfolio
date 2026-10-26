@@ -10,6 +10,7 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const containerRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const driveLink = project.googleDriveUrl || project.videoUrl || '';
@@ -17,24 +18,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   useEffect(() => {
     const el = containerRef.current;
-    const video = videoRef.current;
-    if (!el || !video || !project.previewVideoUrl) return;
+    if (!el || !project.previewVideoUrl) return;
 
-    // Use IntersectionObserver so only visible cards actively decode & render video frames
-    // This maintains hardware acceleration and ensures silky-smooth 60fps scrolling
+    // Use IntersectionObserver so only visible cards actively mount & decode video frames
+    // This keeps active hardware video decoders to ~6-8, ensuring buttery 60fps scrolling
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
       },
       {
         threshold: 0.05,
-        rootMargin: '160px 80px 160px 80px',
+        rootMargin: '100px 30px 100px 30px',
       }
     );
 
@@ -44,6 +38,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       observer.disconnect();
     };
   }, [project.previewVideoUrl]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isInView) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isInView]);
 
   return (
     <article 
@@ -60,10 +64,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         className="absolute inset-0 w-full h-full block"
       >
         {/* Exact Video Frame Preview Thumbnail OR Actual Video Stream */}
-        {project.previewVideoUrl ? (
+        {project.previewVideoUrl && isInView ? (
           <video
             ref={videoRef}
             src={project.previewVideoUrl}
+            autoPlay
             loop
             muted
             playsInline

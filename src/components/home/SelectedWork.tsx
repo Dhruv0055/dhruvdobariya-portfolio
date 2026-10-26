@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ArrowRight, HardDrive, ExternalLink } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { ProjectCard } from '../ui/ProjectCard';
@@ -93,19 +92,10 @@ export const SelectedWork: React.FC = () => {
             onTouchStart={() => setIsPausedTop(true)}
             onTouchEnd={() => setIsPausedTop(false)}
           >
-            <motion.div
-              className="flex gap-3.5 sm:gap-5 w-max will-change-transform transform-gpu"
-              animate={{
-                x: isPausedTop ? undefined : ['-33.333%', '0%']
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: 'loop',
-                  duration: 42,
-                  ease: 'linear'
-                }
-              }}
+            <div
+              className={`flex gap-3.5 sm:gap-5 w-max animate-marquee-ltr ${
+                isPausedTop ? 'paused' : ''
+              }`}
             >
               {marqueeTop.map((project, index) => (
                 <div
@@ -115,7 +105,7 @@ export const SelectedWork: React.FC = () => {
                   <ProjectCard project={project} />
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
 
@@ -134,19 +124,10 @@ export const SelectedWork: React.FC = () => {
             onTouchStart={() => setIsPausedBottom(true)}
             onTouchEnd={() => setIsPausedBottom(false)}
           >
-            <motion.div
-              className="flex gap-3.5 sm:gap-5 w-max will-change-transform transform-gpu"
-              animate={{
-                x: isPausedBottom ? undefined : ['0%', '-33.333%']
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: 'loop',
-                  duration: 42,
-                  ease: 'linear'
-                }
-              }}
+            <div
+              className={`flex gap-3.5 sm:gap-5 w-max animate-marquee-rtl ${
+                isPausedBottom ? 'paused' : ''
+              }`}
             >
               {marqueeBottom.map((project, index) => (
                 <div
@@ -156,7 +137,7 @@ export const SelectedWork: React.FC = () => {
                   <ProjectCard project={project} />
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
 

@@ -111,15 +111,6 @@ export const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, [isPaused, isDragging, total]);
 
-  // Ensure autoplaying videos continuously playback without pause
-  useEffect(() => {
-    const videos = document.querySelectorAll('video');
-    videos.forEach((v) => {
-      v.muted = isMuted;
-      v.play().catch(() => {});
-    });
-  }, [activeIndex, isMuted]);
-
   // Keyboard navigation
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -350,16 +341,8 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* THE CARDS FANNING OUT ALONG THE 3D RADIAL ARC */}
-          <motion.div
-            animate={{
-              x: [-16, 16, -16]
-            }}
-            transition={{
-              duration: 5.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="relative w-full h-full flex items-center justify-center"
+          <div
+            className="relative w-full h-full flex items-center justify-center transform-gpu"
             style={{ transformStyle: 'preserve-3d' }}
           >
             {carouselItems.map((item, index) => {
@@ -518,7 +501,7 @@ export const Hero: React.FC = () => {
                 </motion.div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
 
         {/* CONTROLS & DIRECT ACTIONS BAR BELOW THE WHEEL */}

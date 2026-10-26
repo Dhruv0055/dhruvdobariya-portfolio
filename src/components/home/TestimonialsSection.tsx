@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Star, CheckCircle, MessageSquare } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { ScrollReveal } from '../ui/ScrollReveal';
@@ -57,19 +56,10 @@ export const TestimonialsSection: React.FC = () => {
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
         >
-          <motion.div
-            className="flex gap-3.5 sm:gap-5 w-max will-change-transform transform-gpu"
-            animate={{
-              x: isPaused ? undefined : ['-33.333%', '0%']
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: 'loop',
-                duration: 28,
-                ease: 'linear'
-              }
-            }}
+          <div
+            className={`flex gap-3.5 sm:gap-5 w-max animate-marquee-reviews ${
+              isPaused ? 'paused' : ''
+            }`}
           >
             {marqueeList.map((test, index) => {
               const authorName = test.author || test.clientName || 'Client';
@@ -132,7 +122,7 @@ export const TestimonialsSection: React.FC = () => {
                 </div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -68,6 +68,40 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+/* 60fps GPU-Accelerated Marquee Animations (Compositor Thread) */
+@keyframes marquee-ltr {
+  0% {
+    transform: translate3d(-33.333%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+@keyframes marquee-rtl {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-33.333%, 0, 0);
+  }
+}
+
+.animate-marquee-ltr {
+  animation: marquee-ltr 42s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-rtl {
+  animation: marquee-rtl 42s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-reviews {
+  animation: marquee-ltr 32s linear infinite;
+  will-change: transform;
+}
+
 /* Accessibility: prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,
