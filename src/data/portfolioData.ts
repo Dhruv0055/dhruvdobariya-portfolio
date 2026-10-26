@@ -190,6 +190,7 @@ export const portfolioData: SiteConfig = {
       videoSourceType: 'google-drive',
       videoUrl: 'https://drive.google.com/file/d/1aE9h0qbrHgfUux3CWtIQ7fNY66BX3fPB/view?usp=drive_link',
       googleDriveUrl: 'https://drive.google.com/file/d/1aE9h0qbrHgfUux3CWtIQ7fNY66BX3fPB/view?usp=drive_link',
+      previewVideoUrl: '/commercial-video.mp4',
       posterImage: 'https://lh3.googleusercontent.com/d/1aE9h0qbrHgfUux3CWtIQ7fNY66BX3fPB=w1080',
       featured: true
     },
@@ -210,6 +211,7 @@ export const portfolioData: SiteConfig = {
       videoSourceType: 'google-drive',
       videoUrl: 'https://drive.google.com/file/d/1XIW0mD5bUJ6wz7691rK-Xl7H3_F5cihT/view?usp=drive_link',
       googleDriveUrl: 'https://drive.google.com/file/d/1XIW0mD5bUJ6wz7691rK-Xl7H3_F5cihT/view?usp=drive_link',
+      previewVideoUrl: '/shortform-video.mp4',
       posterImage: 'https://lh3.googleusercontent.com/d/1XIW0mD5bUJ6wz7691rK-Xl7H3_F5cihT=w1080',
       featured: true
     },
@@ -251,6 +253,7 @@ export const portfolioData: SiteConfig = {
       videoSourceType: 'google-drive',
       videoUrl: 'https://drive.google.com/file/d/15xo3vY1vEuh8YZrrdmlEXyhsCelAmvAx/view?usp=drive_link',
       googleDriveUrl: 'https://drive.google.com/file/d/15xo3vY1vEuh8YZrrdmlEXyhsCelAmvAx/view?usp=drive_link',
+      previewVideoUrl: '/ugc-video.mp4',
       posterImage: 'https://lh3.googleusercontent.com/d/15xo3vY1vEuh8YZrrdmlEXyhsCelAmvAx=w1080',
       featured: true
     }

@@ -11,7 +11,7 @@ import {
   Eye
 } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
-import { getGoogleDriveDirectStreamUrl, getGoogleDriveThumbnail } from '../../utils/videoUtils';
+import { getGoogleDriveThumbnail } from '../../utils/videoUtils';
 
 interface CarouselItem {
   id: string;
@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
       badge: '01',
       title: portfolioData.projects[0]?.title || 'Commercial Brand Film',
       subtitle: 'High-Impact Color & Sound Mix',
-      videoUrl: portfolioData.projects[0]?.previewVideoUrl || getGoogleDriveDirectStreamUrl(portfolioData.projects[0]?.googleDriveUrl),
+      videoUrl: portfolioData.projects[0]?.previewVideoUrl || '/commercial-video.mp4',
       driveUrl: portfolioData.projects[0]?.googleDriveUrl || portfolioData.masterDriveFolder,
       image: portfolioData.projects[0]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[0]?.googleDriveUrl)
     },
@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
       badge: '02',
       title: portfolioData.projects[1]?.title || 'Short-Form Viral Reel',
       subtitle: 'Retention-Engineered 9:16 Pacing',
-      videoUrl: portfolioData.projects[1]?.previewVideoUrl || getGoogleDriveDirectStreamUrl(portfolioData.projects[1]?.googleDriveUrl),
+      videoUrl: portfolioData.projects[1]?.previewVideoUrl || '/shortform-video.mp4',
       driveUrl: portfolioData.projects[1]?.googleDriveUrl || portfolioData.masterDriveFolder,
       image: portfolioData.projects[1]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[1]?.googleDriveUrl)
     },
@@ -85,7 +85,7 @@ export const Hero: React.FC = () => {
       badge: '04',
       title: portfolioData.projects[3]?.title || 'UGC Direct Response',
       subtitle: 'High-Converting Performance',
-      videoUrl: portfolioData.projects[3]?.previewVideoUrl || getGoogleDriveDirectStreamUrl(portfolioData.projects[3]?.googleDriveUrl),
+      videoUrl: portfolioData.projects[3]?.previewVideoUrl || '/ugc-video.mp4',
       driveUrl: portfolioData.projects[3]?.googleDriveUrl || portfolioData.masterDriveFolder,
       image: portfolioData.projects[3]?.posterImage || getGoogleDriveThumbnail(portfolioData.projects[3]?.googleDriveUrl)
     }
@@ -486,19 +486,8 @@ export const Hero: React.FC = () => {
                         <span className="font-mono text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/20 text-white">
                           {item.badge}
                         </span>
-                        <span className="px-2 py-0.5 rounded-full bg-[#E63E26] text-[8px] sm:text-[9px] font-mono font-bold tracking-wider uppercase text-white">
-                          4K MASTER
-                        </span>
+                        <span className="w-2 h-2 rounded-full bg-[#E63E26]" />
                       </div>
-
-                      {/* Center Play Indicator on Hover / Center */}
-                      {isCenter && (
-                        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg">
-                            <span className="text-black text-xs font-bold font-mono">4K</span>
-                          </div>
-                        </div>
-                      )}
 
                       {/* Card Bottom Info & Drive Link */}
                       <div className="relative z-10 space-y-1">
