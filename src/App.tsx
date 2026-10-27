@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { MotionBackgroundCanvas } from './components/layout/MotionBackgroundCanvas';
+import { LumaDotBackground } from './components/layout/LumaDotBackground';
 import { HomePage } from './pages/HomePage';
 import { WorkPage } from './pages/WorkPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
@@ -33,8 +33,8 @@ export const App: React.FC = () => {
     <BrowserRouter>
       <ScrollToTop />
       <div className="relative min-h-screen bg-[#ECEBE8] text-[#0D0D0D] font-sans selection:bg-[#E63E26] selection:text-white flex flex-col justify-between overflow-x-hidden">
-        {/* Full-Site Kinetic Video Tracking & Waveform Motion Canvas */}
-        <MotionBackgroundCanvas />
+        {/* Full-Site Luminance (Luma) Reactive Dot Background */}
+        <LumaDotBackground />
 
         {/* Global Navbar */}
         <Navbar />
