@@ -4,7 +4,7 @@ export const AmbientMeshBackground: React.FC = () => {
   return (
     <div 
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none bg-[#ECEBE8]"
+      className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none bg-[#ECEBE8]"
     >
       {/* 1. GPU-ACCELERATED FLOWING LIQUID MESH (ORGANIC DRIFTING AMBIENT LIGHT BLOBS) */}
       <div className="absolute inset-0 transform-gpu overflow-hidden">
