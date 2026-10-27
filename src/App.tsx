@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
+import { AmbientMeshBackground } from './components/layout/AmbientMeshBackground';
 import { HomePage } from './pages/HomePage';
 import { WorkPage } from './pages/WorkPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
@@ -31,9 +32,9 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="relative min-h-screen bg-[#ECEBE8] text-[#0D0D0D] font-sans selection:bg-[#E63E26] selection:text-white flex flex-col justify-between overflow-x-hidden bg-crosshair-grid">
-        {/* Film grain subtle overlay */}
-        <div className="fixed inset-0 bg-film-grain pointer-events-none z-0 opacity-10" />
+      <div className="relative min-h-screen bg-[#ECEBE8] text-[#0D0D0D] font-sans selection:bg-[#E63E26] selection:text-white flex flex-col justify-between overflow-x-hidden">
+        {/* Full-Site Fluid Ambient Liquid Mesh Motion Background */}
+        <AmbientMeshBackground />
 
         {/* Global Navbar */}
         <Navbar />
