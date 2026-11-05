@@ -20,7 +20,7 @@ export const portfolioData: SiteConfig = {
     "Whether you need a high-retention Reel, UGC video ads, a YouTube video, a commercial brand film, or a cinematic edit, I'm available to collaborate."
   ],
   profileImage: '/dhruv-photo.jpg',
-  masterDriveFolder: 'https://drive.google.com/drive/folders/1-fAPohvDgHQ8tLt3TJAOscRYUVtHhLlL?usp=drive_link',
+  masterDriveFolder: 'https://drive.google.com/drive/folders/1k55FZq7vetT6quzOi4b-C_HVFO7efiwE?usp=sharing',
 
   contact: {
     email: 'dhruvdobariya005@gmail.com',

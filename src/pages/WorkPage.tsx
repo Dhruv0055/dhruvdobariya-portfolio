@@ -49,7 +49,7 @@ export const WorkPage: React.FC = () => {
 
             <div>
               <a
-                href={portfolioData.masterDriveFolder || "https://drive.google.com/drive/folders/1-fAPohvDgHQ8tLt3TJAOscRYUVtHhLlL?usp=drive_link"}
+                href={portfolioData.masterDriveFolder || "https://drive.google.com/drive/folders/1k55FZq7vetT6quzOi4b-C_HVFO7efiwE?usp=sharing"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-[#0D0D0D] hover:bg-[#E63E26] text-white font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-95"
