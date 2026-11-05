@@ -1,353 +1,450 @@
 import type { SiteConfig } from '../types/portfolio';
 
-/**
- * Editfolio Master Configuration
- * Clean Commercial Template Defaults
- */
 export const portfolioData: SiteConfig = {
-  "brandName": "Dhruv Dobariya",
-  "profession": "Freelance Video Editor",
-  "tagline": "High-Retention Video Editing & Commercial Color Finishing",
-  "heroStatement": "I transform raw footage into engaging visual stories designed to capture attention and elevate your brand.",
-  "editorialStatement": "I DON'T JUST EDIT VIDEOS. I BUILD ATTENTION.",
-  "editorialParagraph": "Every cut, transition, sound effect and frame has a purpose. I focus on creating videos that feel polished, engaging and visually memorable — from high-retention short-form edits and UGC to commercial brand films and cinematic edits.",
-  "brandStatement": "RAW FOOTAGE IS ONLY THE BEGINNING.",
-  "brandSubtext": "The right edit can change how a story feels, how long someone watches, and what they remember.",
-  "bio": [
+  brandName: 'Dhruv Dobariya',
+  profession: 'Freelance Video Editor',
+  tagline: 'High-Retention Video Editing & Commercial Color Finishing',
+  heroStatement: 'I transform raw footage into engaging visual stories designed to capture attention and elevate your brand.',
+  
+  editorialStatement: "I DON'T JUST EDIT VIDEOS. I BUILD ATTENTION.",
+  editorialParagraph:
+    'Every cut, transition, sound effect and frame has a purpose. I focus on creating videos that feel polished, engaging and visually memorable — from high-retention short-form edits and UGC to commercial brand films and cinematic edits.',
+  
+  brandStatement: 'RAW FOOTAGE IS ONLY THE BEGINNING.',
+  brandSubtext:
+    'The right edit can change how a story feels, how long someone watches, and what they remember.',
+
+  bio: [
     "I'm Dhruv, a video editor focused on creating engaging digital content for creators, brands and businesses.",
     "I enjoy taking raw footage and turning it into content that feels polished, intentional and worth watching.",
     "Whether you need a high-retention Reel, UGC video ads, a YouTube video, a commercial brand film, or a cinematic edit, I'm available to collaborate."
   ],
-  "profileImage": "/dhruv-photo.jpg",
-  "masterDriveFolder": "https://drive.google.com/drive/folders/1-fAPohvDgHQ8tLt3TJAOscRYUVtHhLlL?usp=drive_link",
-  "contact": {
-    "email": "dhruvdobariya005@gmail.com",
-    "whatsapp": "+91 81609 25636",
-    "whatsappNumber": "918160925636",
-    "instagram": "@dhruv_dobariya_2005",
-    "instagramUrl": "https://www.instagram.com/dhruv_dobariya_2005/",
-    "linkedin": "dhruv-dobariya",
-    "linkedinUrl": "https://linkedin.com",
-    "location": "BASED IN INDIA — AVAILABLE WORLDWIDE",
-    "availability": "AVAILABLE FOR PROJECTS — 2026"
+  profileImage: '/dhruv-photo.jpg',
+  masterDriveFolder: 'https://drive.google.com/drive/folders/1-fAPohvDgHQ8tLt3TJAOscRYUVtHhLlL?usp=drive_link',
+
+  contact: {
+    email: 'dhruvdobariya005@gmail.com',
+    whatsapp: '+91 81609 25636',
+    whatsappNumber: '918160925636',
+    instagram: '@dhruv_dobariya_2005',
+    instagramUrl: 'https://www.instagram.com/dhruv_dobariya_2005/',
+    linkedin: 'dhruv-dobariya',
+    linkedinUrl: 'https://linkedin.com',
+    location: 'BASED IN INDIA — AVAILABLE WORLDWIDE',
+    availability: 'AVAILABLE FOR PROJECTS — 2026'
   },
-  "showreel": {
-    "title": "FEATURED 2026 SHOWREEL",
-    "subtitle": "SELECTED WORK",
-    "description": "A curated showcase of commercial edits, short-form retention structures, UGC video ads, and cinematic color grades.",
-    "videoSourceType": "external",
-    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    "previewVideoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    "posterImage": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1200&auto=format&fit=crop",
-    "tags": [
-      "COMMERCIAL",
-      "SHORT-FORM",
-      "UGC VIDEOS",
-      "CINEMATIC",
-      "COLOR GRADING"
-    ]
+
+  showreel: {
+    title: 'FEATURED 2026 SHOWREEL',
+    subtitle: 'SELECTED WORK',
+    description: 'A curated showcase of commercial edits, short-form retention structures, UGC video ads, and cinematic color grades.',
+    videoSourceType: 'google-drive',
+    videoUrl: 'https://drive.google.com/file/d/1DFAgevx05WhHTuQozoFQXDK58xCvvz4W/view?usp=drive_link',
+    googleDriveUrl: 'https://drive.google.com/file/d/1DFAgevx05WhHTuQozoFQXDK58xCvvz4W/view?usp=drive_link',
+    previewVideoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    posterImage: 'https://lh3.googleusercontent.com/d/1DFAgevx05WhHTuQozoFQXDK58xCvvz4W=w1080',
+    tags: ['COMMERCIAL', 'SHORT-FORM', 'UGC VIDEOS', 'CINEMATIC', 'COLOR GRADING']
   },
-  "services": [
+
+  services: [
     {
-      "number": "01",
-      "title": "COMMERCIAL EDITING",
-      "subtitle": "Brand & Product Impact",
-      "description": "High-end commercial films, promotional ads, and product launch videos designed to elevate brand authority and drive conversions.",
-      "tags": [
-        "Commercial Films",
-        "Product Videos",
-        "Brand Ads",
-        "Promotional Videos"
-      ]
+      number: '01',
+      title: 'COMMERCIAL EDITING',
+      subtitle: 'Brand & Product Impact',
+      description: 'High-end commercial films, promotional ads, and product launch videos designed to elevate brand authority and drive conversions.',
+      tags: ['Commercial Films', 'Product Videos', 'Brand Ads', 'Promotional Videos']
     },
     {
-      "number": "02",
-      "title": "SHORT-FORM CONTENT",
-      "subtitle": "Retention & Viral Growth",
-      "description": "Hook-driven, fast-paced Reels, Shorts, and TikTok edits optimized for high watch time, pattern interrupts, and engagement.",
-      "tags": [
-        "Reels / TikTok",
-        "YouTube Shorts",
-        "Retention Editing",
-        "Dynamic Subtitles"
-      ]
+      number: '02',
+      title: 'SHORT-FORM CONTENT',
+      subtitle: 'Retention & Viral Growth',
+      description: 'Hook-driven, fast-paced Reels, Shorts, and TikTok edits optimized for high watch time, pattern interrupts, and engagement.',
+      tags: ['Reels / TikTok', 'YouTube Shorts', 'Retention Editing', 'Dynamic Subtitles']
     },
     {
-      "number": "03",
-      "title": "UGC & CREATIVE ADS",
-      "subtitle": "Direct Response Performance",
-      "description": "High-converting UGC video ads and social creatives built to boost click-through rates and scale paid media campaigns.",
-      "tags": [
-        "UGC Ads",
-        "Meta Ad Creatives",
-        "TikTok Ads",
-        "Product Demos"
-      ]
+      number: '03',
+      title: 'UGC & CREATIVE ADS',
+      subtitle: 'Direct Response Performance',
+      description: 'High-converting UGC video ads and social creatives built to boost click-through rates and scale paid media campaigns.',
+      tags: ['UGC Ads', 'Meta Ad Creatives', 'TikTok Ads', 'Product Demos']
     },
     {
-      "number": "04",
-      "title": "CINEMATIC COLOR & FINISHING",
-      "subtitle": "Visual Aesthetics & Sound",
-      "description": "Precision DaVinci Resolve color grading, custom film print emulations, visual effects finishing, and spatial sound design.",
-      "tags": [
-        "DaVinci Color Grading",
-        "LUTs & Print Film",
-        "Sound Design & Foley",
-        "4K Mastering"
-      ]
+      number: '04',
+      title: 'CINEMATIC COLOR & FINISHING',
+      subtitle: 'Visual Aesthetics & Sound',
+      description: 'Precision DaVinci Resolve color grading, custom film print emulations, visual effects finishing, and spatial sound design.',
+      tags: ['DaVinci Color Grading', 'LUTs & Print Film', 'Sound Design & Foley', '4K Mastering']
     }
   ],
-  "process": [
+
+  process: [
     {
-      "number": "01",
-      "step": "01",
-      "title": "BRIEF & FOOTAGE REVIEW",
-      "description": "We review raw footage, target audience, reference styles, audio cues, and delivery specifications.",
-      "details": [
-        "Asset intake & log review",
-        "Pacing & hook alignment",
-        "Delivery specifications"
-      ]
+      number: '01',
+      step: '01',
+      title: 'BRIEF & FOOTAGE REVIEW',
+      description: 'We review raw footage, target audience, reference styles, audio cues, and delivery specifications.',
+      details: ['Asset intake & log review', 'Pacing & hook alignment', 'Delivery specifications']
     },
     {
-      "number": "02",
-      "step": "02",
-      "title": "STORY CUT & PACING",
-      "description": "Assemble the narrative backbone, fine-tuning timing, rhythm, and retention hooks for maximum impact.",
-      "details": [
-        "A-roll cutting & dynamic pacing",
-        "B-roll selection & visual rhythm",
-        "Hook optimization"
-      ]
+      number: '02',
+      step: '02',
+      title: 'STORY CUT & PACING',
+      description: 'Assemble the narrative backbone, fine-tuning timing, rhythm, and retention hooks for maximum impact.',
+      details: ['A-roll cutting & dynamic pacing', 'B-roll selection & visual rhythm', 'Audio beat synchronization']
     },
     {
-      "number": "03",
-      "step": "03",
-      "title": "SOUND DESIGN & COLOR",
-      "description": "Layer spatial sound effects, audio mastering, DaVinci Resolve color grading, and dynamic subtitles.",
-      "details": [
-        "DaVinci Resolve color grading",
-        "Layered sound design & foley",
-        "Kinetic titles & typography"
-      ]
+      number: '03',
+      step: '03',
+      title: 'COLOR, SFX & FINISHING',
+      description: 'Apply DaVinci color grading, audio leveling, motion graphics, transitions, and export in master 4K uncompressed format.',
+      details: ['DaVinci Resolve color grade', 'Custom sound design & SFX mix', 'Uncompressed 4K master export']
     },
     {
-      "number": "04",
-      "step": "04",
-      "title": "REVISIONS & 4K DELIVERY",
-      "description": "Client feedback loop with rapid turnarounds, exporting final ProRes and compressed social masters.",
-      "details": [
-        "Quick revision rounds",
-        "4K ProRes & Web masters",
-        "Google Drive archive handoff"
-      ]
+      number: '04',
+      step: '04',
+      title: 'REVISIONS & 4K DELIVERY',
+      description: 'Rapid turnaround on fine-tuning revisions, final audio mix polish, and delivery of uncompressed 4K master files via Google Drive.',
+      details: ['Prompt revision rounds', 'Final sound & audio leveling', '4K master Google Drive delivery']
     }
   ],
-  "tools": [
+
+  tools: [
+    { name: 'Adobe Premiere Pro', category: 'Assembly & Timeline Editing', icon: 'premiere' },
+    { name: 'DaVinci Resolve Studio', category: 'Color Science & Mastering', icon: 'davinci' },
+    { name: 'Adobe After Effects', category: 'Motion Graphics & VFX', icon: 'aftereffects' },
+    { name: 'Adobe Audition', category: 'Audio Mastering & Sound FX', icon: 'audition' },
+    { name: 'Adobe Photoshop', category: 'Thumbnails & Design Assets', icon: 'photoshop' },
+    { name: 'Google Drive 4K Cloud', category: 'Master Vault & Deliverables', icon: 'drive' }
+  ],
+
+  metrics: [
+    { value: '100+', label: 'Delivered Video Edits' },
+    { value: '4K', label: 'Uncompressed Master Exports' },
+    { value: '+45%', label: 'Average Retention Lift' },
+    { value: '24-48h', label: 'Turnaround Available' }
+  ],
+
+  testimonials: [
     {
-      "name": "Adobe Premiere Pro",
-      "category": "NLE Editing & Assembly"
+      id: 't-1',
+      author: 'Aakash Sharma',
+      clientName: 'Aakash Sharma',
+      role: 'Content Creator',
+      clientRole: 'YouTube Creator (350K+ Subs)',
+      company: 'Aakash Vlogs',
+      quote: 'Bhai edit ekdum next level tha! Pacing, sound effects aur hook bilkul on point. Reel ne organically 600K+ views cross kar liye. Super fast delivery!',
+      content: 'Bhai edit ekdum next level tha! Pacing, sound effects aur hook bilkul on point. Reel ne organically 600K+ views cross kar liye. Super fast delivery!',
+      metric: '600K+ Views on Reel'
     },
     {
-      "name": "DaVinci Resolve Studio",
-      "category": "Color Grading & Finishing"
+      id: 't-2',
+      author: 'Rohan Mehta',
+      clientName: 'Rohan Mehta',
+      role: 'D2C Brand Founder',
+      clientRole: 'Founder',
+      company: 'UrbanKrafts',
+      quote: 'Dhruv ke saath video ads edit karwaye for Meta and TikTok. Product highlights aur dynamic captions ke wajah se ROAS easily 3.2x touch kar gaya. Highly recommended!',
+      content: 'Dhruv ke saath video ads edit karwaye for Meta and TikTok. Product highlights aur dynamic captions ke wajah se ROAS easily 3.2x touch kar gaya. Highly recommended!',
+      metric: '3.2x ROAS on Ads'
     },
     {
-      "name": "Adobe After Effects",
-      "category": "Motion Graphics & VFX"
+      id: 't-3',
+      author: 'Kavita Singhania',
+      clientName: 'Kavita Singhania',
+      role: 'Creative Director',
+      clientRole: 'Creative Lead',
+      company: 'Studio Vibe Media',
+      quote: 'Working with Dhruv is super smooth. DaVinci Resolve color grading aur visual flow bahut clean hai. 24-48 hours me polished master deliver kar deta hai without any delays.',
+      content: 'Working with Dhruv is super smooth. DaVinci Resolve color grading aur visual flow bahut clean hai. 24-48 hours me polished master deliver kar deta hai without any delays.',
+      metric: '24h Fast Delivery'
     },
     {
-      "name": "Adobe Audition",
-      "category": "Audio Mastering & Noise Reduction"
-    },
-    {
-      "name": "CapCut Pro Desktop",
-      "category": "Rapid Short-Form Subtitles"
-    },
-    {
-      "name": "Dehancer Pro",
-      "category": "Film Emulation & Grain"
+      id: 't-4',
+      author: 'Sameer Patel',
+      clientName: 'Sameer Patel',
+      role: 'Fitness & Lifestyle Creator',
+      clientRole: 'Fitness & Lifestyle Creator',
+      company: 'FitLife by Sam',
+      quote: 'Bhai ka retention editing style mast hai! Dead air cut karke video ko retain karna inka main strength hai. Har ek project flawless nikla.',
+      content: 'Bhai ka retention editing style mast hai! Dead air cut karke video ko retain karna inka main strength hai. Har ek project flawless nikla.',
+      metric: '100% Reliable'
     }
   ],
-  "metrics": [
+
+  projects: [
     {
-      "value": "150M+",
-      "label": "TOTAL VIEWS GENERATED",
-      "detail": "Across YouTube, Instagram & TikTok client campaigns"
+      id: 'project-commercial',
+      slug: 'commercial-brand-film',
+      number: '01',
+      title: 'Commercial Brand Film',
+      category: 'COMMERCIAL',
+      year: '2026',
+      client: 'Brand Commercial',
+      shortDescription: 'High-impact commercial video edit featuring dynamic cuts, DaVinci color grading, and spatial audio sync.',
+      fullDescription: 'A premier commercial video edit highlighting brand aesthetic, product details, and rhythmic pacing. Streamed directly from Google Drive in full quality.',
+      challenge: 'Balancing fast visual rhythm while preserving an elegant brand narrative arc.',
+      solution: 'Synchronized visual cuts to subtle audio transients and created custom split-tone grading.',
+      role: ['Commercial Editing', 'Color Grading', 'Sound Design'],
+      tools: ['Adobe Premiere Pro', 'DaVinci Resolve', 'After Effects'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1aE9h0qbrHgfUux3CWtIQ7fNY66BX3fPB/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1aE9h0qbrHgfUux3CWtIQ7fNY66BX3fPB/view?usp=drive_link',
+      previewVideoUrl: '/commercial-video.mp4',
+      posterImage: '/commercial-thumb.jpg',
+      featured: true
     },
     {
-      "value": "3.2x",
-      "label": "AVERAGE ROAS ON ADS",
-      "detail": "Direct-response UGC and commercial video ads"
+      id: 'project-short-form',
+      slug: 'short-form-retention-edit',
+      number: '02',
+      title: 'Short-Form Retention Edit',
+      category: 'SHORT-FORM',
+      year: '2026',
+      client: 'Social Growth',
+      shortDescription: 'Fast-paced, hook-optimized vertical edit built for maximum viewer retention on Instagram Reels and TikTok.',
+      fullDescription: 'An energetic short-form edit engineered to keep audiences glued from the opening hook to the end screen with pattern interrupts, animated text, and sound effects.',
+      challenge: 'Squeezing maximum narrative density and visual flair into under 45 seconds.',
+      solution: 'Utilized kinetic typography, speed ramping, and micro-sound accents.',
+      role: ['Short-Form Editing', 'Motion Graphics', 'Sound Design'],
+      tools: ['Adobe Premiere Pro', 'After Effects', 'Audition'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1XIW0mD5bUJ6wz7691rK-Xl7H3_F5cihT/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1XIW0mD5bUJ6wz7691rK-Xl7H3_F5cihT/view?usp=drive_link',
+      previewVideoUrl: '/shortform-video.mp4',
+      posterImage: '/shortform-thumb.jpg',
+      featured: true
     },
     {
-      "value": "24-48H",
-      "label": "AVERAGE TURNAROUND",
-      "detail": "Rapid draft delivery for fast-moving creator schedules"
+      id: 'project-cinematic',
+      slug: 'cinematic-film-campaign',
+      number: '03',
+      title: 'Cinematic Campaign Edit',
+      category: 'CINEMATIC',
+      year: '2026',
+      client: 'Cinematic Film',
+      shortDescription: 'Atmospheric cinematic trailer highlighting filmic color tones, widescreen composition, and sound design.',
+      fullDescription: 'A widescreen cinematic piece cut with precision color science and orchestral score timing in DaVinci Resolve.',
+      challenge: 'Filtering vast footage into an emotional visual piece with cinematic shadow roll-off.',
+      solution: 'Graded with custom Kodak print emulation and layered environmental foley.',
+      role: ['Video Editing', 'Color Grading', 'Sound Design'],
+      tools: ['DaVinci Resolve', 'Premiere Pro', 'Audition'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1sarXkfoz0CV-KHKwYUrQma_9JfKpSB1X/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1sarXkfoz0CV-KHKwYUrQma_9JfKpSB1X/view?usp=drive_link',
+      previewVideoUrl: '/cinematic-video.mp4',
+      posterImage: '/cinematic-thumb.jpg',
+      featured: true
     },
     {
-      "value": "99.4%",
-      "label": "CLIENT SATISFACTION",
-      "detail": "50+ recurring creators and agency partners"
-    }
-  ],
-  "testimonials": [
-    {
-      "id": "t-1",
-      "author": "Marcus Vance",
-      "clientName": "Marcus Vance",
-      "role": "Content Creator",
-      "clientRole": "YouTube Creator (450K+ Subs)",
-      "company": "Vance Media",
-      "quote": "The retention editing and sound design took our short-form content to another level. One reel crossed 600K+ organic views within 48 hours. Turnarounds are insanely fast.",
-      "content": "The retention editing and sound design took our short-form content to another level. One reel crossed 600K+ organic views within 48 hours. Turnarounds are insanely fast.",
-      "metric": "600K+ Views on Reel"
+      id: 'project-ugc',
+      slug: 'ugc-brand-creative',
+      number: '04',
+      title: 'UGC Brand Creative Ad',
+      category: 'UGC',
+      year: '2026',
+      client: 'UGC Performance Ad',
+      shortDescription: 'Direct-response UGC video edit with authentic pacing, engaging product demonstrations, and clear CTA.',
+      fullDescription: 'An authentic UGC creative ad built for Meta and TikTok direct-response conversion. Combines creator talent footage with snappy product callouts and native social pacing.',
+      challenge: 'Maintaining organic, authentic UGC feel while driving commercial conversion.',
+      solution: 'Fast visual pacing, punchy social sound design, and high-contrast captions.',
+      role: ['UGC Editing', 'Motion Graphics', 'Sound Design'],
+      tools: ['Adobe Premiere Pro', 'After Effects', 'Photoshop'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/15xo3vY1vEuh8YZrrdmlEXyhsCelAmvAx/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/15xo3vY1vEuh8YZrrdmlEXyhsCelAmvAx/view?usp=drive_link',
+      previewVideoUrl: '/ugc-video.mp4',
+      posterImage: '/ugc-thumb.jpg',
+      featured: true
     },
     {
-      "id": "t-2",
-      "author": "Elena Rostova",
-      "clientName": "Elena Rostova",
-      "role": "D2C Brand Founder",
-      "clientRole": "Founder",
-      "company": "Aura Cosmetics",
-      "quote": "Working together on our paid video ads delivered an immediate 3.2x ROAS increase on Meta and TikTok. Pacing and dynamic captions were completely dialed in.",
-      "content": "Working together on our paid video ads delivered an immediate 3.2x ROAS increase on Meta and TikTok. Pacing and dynamic captions were completely dialed in.",
-      "metric": "3.2x ROAS on Ads"
+      id: 'project-slide-1',
+      slug: 'commercial-visual-campaign',
+      number: '05',
+      title: 'Commercial Visual Campaign',
+      category: 'COMMERCIAL',
+      year: '2026',
+      client: 'Visual Campaign',
+      shortDescription: 'High-impact visual cuts, commercial color grading, and dynamic audio rhythm.',
+      fullDescription: 'A dynamic visual campaign highlighting product details and rhythmic pacing.',
+      role: ['Commercial Editing', 'Color Grading'],
+      tools: ['Adobe Premiere Pro', 'DaVinci Resolve'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1sImGyz7muCkxe5_bT5esPp3AW01tL6Qu/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1sImGyz7muCkxe5_bT5esPp3AW01tL6Qu/view?usp=drive_link',
+      previewVideoUrl: '/slide-video-1.mp4',
+      posterImage: '/slide-thumb-1.jpg',
+      featured: true
     },
     {
-      "id": "t-3",
-      "author": "David Chen",
-      "clientName": "David Chen",
-      "role": "Creative Director",
-      "clientRole": "Creative Lead",
-      "company": "Horizon Agency",
-      "quote": "Super reliable turnarounds and pristine DaVinci Resolve color finishing. Our commercial deliverables were handed over 48 hours ahead of schedule with zero hassle.",
-      "content": "Super reliable turnarounds and pristine DaVinci Resolve color finishing. Our commercial deliverables were handed over 48 hours ahead of schedule with zero hassle.",
-      "metric": "24h Fast Delivery"
+      id: 'project-slide-2',
+      slug: 'viral-retention-reel',
+      number: '06',
+      title: 'Viral Retention Reel',
+      category: 'SHORT-FORM',
+      year: '2026',
+      client: 'Creator Reel',
+      shortDescription: 'Fast-paced hook-engineered vertical edit built for maximum viewer watch time.',
+      fullDescription: 'Hook-driven edit with pattern interrupts and kinetic typography.',
+      role: ['Short-Form Editing', 'Motion Graphics'],
+      tools: ['Premiere Pro', 'After Effects'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1YlrgxVCdW7WgC24QC_JuKZRCUJND5Z39/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1YlrgxVCdW7WgC24QC_JuKZRCUJND5Z39/view?usp=drive_link',
+      previewVideoUrl: '/slide-video-2.mp4',
+      posterImage: '/slide-thumb-2.jpg',
+      featured: true
     },
     {
-      "id": "t-4",
-      "author": "Samantha Lee",
-      "clientName": "Samantha Lee",
-      "role": "Fitness & Lifestyle Creator",
-      "clientRole": "Lifestyle Creator (200K+)",
-      "company": "FitLife by Sam",
-      "quote": "The narrative pacing eliminated all dead air and boosted our average view duration on YouTube by 42%. An indispensable creative partner for our weekly schedule.",
-      "content": "The narrative pacing eliminated all dead air and boosted our average view duration on YouTube by 42%. An indispensable creative partner for our weekly schedule.",
-      "metric": "100% Reliable"
-    }
-  ],
-  "projects": [
-    {
-      "id": "project-commercial",
-      "slug": "commercial-brand-film",
-      "number": "01",
-      "title": "Commercial Brand Film",
-      "category": "COMMERCIAL",
-      "year": "2026",
-      "client": "Aesthetic Brand Co.",
-      "shortDescription": "High-impact commercial video edit featuring dynamic cuts, DaVinci color grading, and spatial audio sync.",
-      "fullDescription": "A premier commercial video edit highlighting brand aesthetic, product details, and rhythmic pacing. Streamed in full 4K quality.",
-      "challenge": "Balancing fast visual rhythm while preserving an elegant brand narrative arc.",
-      "solution": "Synchronized visual cuts to subtle audio transients and created custom split-tone grading.",
-      "role": [
-        "Commercial Editing",
-        "Color Grading",
-        "Sound Design"
-      ],
-      "tools": [
-        "Adobe Premiere Pro",
-        "DaVinci Resolve",
-        "After Effects"
-      ],
-      "videoSourceType": "external",
-      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      "previewVideoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      "posterImage": "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1200&auto=format&fit=crop",
-      "featured": true
+      id: 'project-slide-3',
+      slug: 'direct-response-ugc-ad',
+      number: '07',
+      title: 'Direct Response UGC Ad',
+      category: 'UGC',
+      year: '2026',
+      client: 'Performance Marketing',
+      shortDescription: 'Snappy social video ad designed for Meta and TikTok paid campaigns.',
+      fullDescription: 'Authentic creator creative built for direct-response conversions.',
+      role: ['UGC Editing', 'Sound Design'],
+      tools: ['Premiere Pro', 'After Effects'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1grDu5R9mlchF8N7nZ1AM5DLD2ourPGbg/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1grDu5R9mlchF8N7nZ1AM5DLD2ourPGbg/view?usp=drive_link',
+      previewVideoUrl: '/slide-video-3.mp4',
+      posterImage: '/slide-thumb-3.jpg',
+      featured: true
     },
     {
-      "id": "project-short-form",
-      "slug": "short-form-retention-edit",
-      "number": "02",
-      "title": "Short-Form Retention Edit",
-      "category": "SHORT-FORM",
-      "year": "2026",
-      "client": "Creator Media",
-      "shortDescription": "Fast-paced, hook-optimized vertical edit built for maximum viewer retention on Instagram Reels and TikTok.",
-      "fullDescription": "An energetic short-form edit engineered to keep audiences glued from the opening hook to the end screen with pattern interrupts, animated text, and sound effects.",
-      "challenge": "Squeezing maximum narrative density and visual flair into under 45 seconds.",
-      "solution": "Utilized kinetic typography, speed ramping, and micro-sound accents.",
-      "role": [
-        "Short-Form Editing",
-        "Motion Graphics",
-        "Sound Design"
-      ],
-      "tools": [
-        "Adobe Premiere Pro",
-        "After Effects",
-        "Audition"
-      ],
-      "videoSourceType": "external",
-      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      "previewVideoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      "posterImage": "https://images.unsplash.com/photo-1616469829941-c7200edec809?q=80&w=1200&auto=format&fit=crop",
-      "featured": true
+      id: 'project-slide-4',
+      slug: 'cinematic-film-grading',
+      number: '08',
+      title: 'Cinematic Film Grading',
+      category: 'CINEMATIC',
+      year: '2026',
+      client: 'Film Studio',
+      shortDescription: 'Atmospheric cinematic grade with filmic shadow roll-off and spatial foley.',
+      fullDescription: 'Precision DaVinci Resolve color science with orchestral timing.',
+      role: ['Color Grading', 'Sound Design'],
+      tools: ['DaVinci Resolve Studio', 'Audition'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1DFAgevx05WhHTuQozoFQXDK58xCvvz4W/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1DFAgevx05WhHTuQozoFQXDK58xCvvz4W/view?usp=drive_link',
+      previewVideoUrl: '/slide-video-4.mp4',
+      posterImage: '/slide-thumb-4.jpg',
+      featured: true
     },
     {
-      "id": "project-ugc",
-      "slug": "direct-response-ugc-ad",
-      "number": "03",
-      "title": "Direct Response UGC Ad",
-      "category": "UGC",
-      "year": "2026",
-      "client": "D2C Apparel",
-      "shortDescription": "High-converting UGC video ad engineered to boost click-through rates and scale paid media campaigns.",
-      "fullDescription": "A performance-driven UGC advertisement combining natural smartphone footage with high-conversion editing cues, native captions, and sound effects.",
-      "challenge": "Producing an ad creative that looks native to social feeds while maintaining strong sales conversion hooks.",
-      "solution": "Structured the first 3 seconds around a pattern-interrupt problem statement followed by fast-paced feature highlights.",
-      "role": [
-        "UGC Video Editing",
-        "Copywriting",
-        "Audio Mastering"
-      ],
-      "tools": [
-        "Adobe Premiere Pro",
-        "CapCut Pro Desktop"
-      ],
-      "videoSourceType": "external",
-      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-      "previewVideoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-      "posterImage": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop",
-      "featured": true
+      id: 'project-slide-5',
+      slug: 'high-retention-creative',
+      number: '09',
+      title: 'High-Retention Creative',
+      category: 'SHORT-FORM',
+      year: '2026',
+      client: 'Brand Partner',
+      shortDescription: 'Dynamic visual rhythm, seamless cuts, and retention-first audio mixing.',
+      fullDescription: 'High-retention social edit engineered to keep audiences engaged till the last second.',
+      role: ['Video Editing', 'Sound Design'],
+      tools: ['Adobe Premiere Pro', 'DaVinci Resolve'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1A-_vg9xLKfVBiaSf3IveTwhkm-CrKv7y/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1A-_vg9xLKfVBiaSf3IveTwhkm-CrKv7y/view?usp=drive_link',
+      previewVideoUrl: '/slide-video-5.mp4',
+      posterImage: '/slide-thumb-5.jpg',
+      featured: true
     },
     {
-      "id": "project-cinematic",
-      "slug": "cinematic-film-campaign",
-      "number": "04",
-      "title": "Cinematic Campaign Edit",
-      "category": "CINEMATIC",
-      "year": "2026",
-      "client": "Indie Studio",
-      "shortDescription": "Atmospheric cinematic trailer highlighting filmic color tones, widescreen composition, and sound design.",
-      "fullDescription": "A widescreen cinematic piece cut with precision color science and orchestral score timing in DaVinci Resolve.",
-      "challenge": "Filtering vast footage into an emotional visual piece with cinematic shadow roll-off.",
-      "solution": "Graded with custom Kodak print emulation and layered environmental foley.",
-      "role": [
-        "Video Editing",
-        "Color Grading",
-        "Sound Design"
-      ],
-      "tools": [
-        "DaVinci Resolve",
-        "Adobe Premiere Pro",
-        "Dehancer Pro"
-      ],
-      "videoSourceType": "external",
-      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
-      "previewVideoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
-      "posterImage": "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200&auto=format&fit=crop",
-      "featured": true
+      id: 'project-more-1',
+      slug: 'automotive-motion-grade',
+      number: '10',
+      title: 'Automotive Motion Grade',
+      category: 'CINEMATIC',
+      year: '2026',
+      client: 'Automotive Media',
+      shortDescription: 'Precision automotive color grading with high-speed cut synchronization.',
+      fullDescription: 'High-octane automotive edit with filmic contrast roll-off and engine audio mix.',
+      role: ['Color Grading', 'Sound Design'],
+      tools: ['DaVinci Resolve', 'Premiere Pro'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/14iYmi2u-M5LVkxqAG95aFalme0j203lB/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/14iYmi2u-M5LVkxqAG95aFalme0j203lB/view?usp=drive_link',
+      previewVideoUrl: '/more-video-1.mp4',
+      posterImage: '/more-thumb-1.jpg',
+      featured: true
+    },
+    {
+      id: 'project-more-2',
+      slug: 'ecommerce-direct-response',
+      number: '11',
+      title: 'E-Commerce Direct Response',
+      category: 'UGC',
+      year: '2026',
+      client: 'Direct Response Brand',
+      shortDescription: 'Conversion-focused UGC creative engineered for Meta and TikTok ad scaling.',
+      fullDescription: 'High-converting social ad featuring snappy product callouts and native social pacing.',
+      role: ['UGC Editing', 'Motion Graphics'],
+      tools: ['Premiere Pro', 'After Effects'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1QfoGMdWtzZRQsUhM0muAEkW7W9ZJoEiX/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1QfoGMdWtzZRQsUhM0muAEkW7W9ZJoEiX/view?usp=drive_link',
+      previewVideoUrl: '/more-video-2.mp4',
+      posterImage: '/more-thumb-2.jpg',
+      featured: true
+    },
+    {
+      id: 'project-more-3',
+      slug: 'viral-retention-hook-reel',
+      number: '12',
+      title: 'Viral Hook Retention Reel',
+      category: 'SHORT-FORM',
+      year: '2026',
+      client: 'Social Growth',
+      shortDescription: 'Hook-optimized vertical edit with pattern interrupts and dynamic subtitles.',
+      fullDescription: 'Fast-paced short-form cut designed to hold audience retention above 80%.',
+      role: ['Short-Form Editing', 'Sound Design'],
+      tools: ['Premiere Pro', 'After Effects', 'Audition'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1LxTUU9v7cpPxoRub1eTDh2cezBIxEl4t/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1LxTUU9v7cpPxoRub1eTDh2cezBIxEl4t/view?usp=drive_link',
+      previewVideoUrl: '/more-video-3.mp4',
+      posterImage: '/more-thumb-3.jpg',
+      featured: true
+    },
+    {
+      id: 'project-more-4',
+      slug: 'commercial-product-launch',
+      number: '13',
+      title: 'Commercial Product Launch',
+      category: 'COMMERCIAL',
+      year: '2026',
+      client: 'Product Brand',
+      shortDescription: 'Polished commercial film featuring rhythmic pacing and DaVinci color finishing.',
+      fullDescription: 'Elevated commercial piece cut to musical transients with rich tonal grading.',
+      role: ['Commercial Editing', 'Color Grading'],
+      tools: ['Adobe Premiere Pro', 'DaVinci Resolve'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1aCMRxLeE4JOHFWlg9fSqxkcdQ51VZnVC/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1aCMRxLeE4JOHFWlg9fSqxkcdQ51VZnVC/view?usp=drive_link',
+      previewVideoUrl: '/more-video-4.mp4',
+      posterImage: '/more-thumb-4.jpg',
+      featured: true
+    },
+    {
+      id: 'project-more-5',
+      slug: 'creator-aesthetic-social-cut',
+      number: '14',
+      title: 'Creator Aesthetic Social Cut',
+      category: 'SHORT-FORM',
+      year: '2026',
+      client: 'Creator Talent',
+      shortDescription: 'Atmospheric social edit combining natural color palettes and ambient foley.',
+      fullDescription: 'Aesthetic creator video cut with seamless visual rhythm and spatial audio.',
+      role: ['Video Editing', 'Audio Mix'],
+      tools: ['Adobe Premiere Pro', 'Audition'],
+      videoSourceType: 'google-drive',
+      videoUrl: 'https://drive.google.com/file/d/1F1h0FJE_6zn-J2-OZqfmrkNW-F5-OYYC/view?usp=drive_link',
+      googleDriveUrl: 'https://drive.google.com/file/d/1F1h0FJE_6zn-J2-OZqfmrkNW-F5-OYYC/view?usp=drive_link',
+      previewVideoUrl: '/more-video-5.mp4',
+      posterImage: '/more-thumb-5.jpg',
+      featured: true
     }
   ]
 };
